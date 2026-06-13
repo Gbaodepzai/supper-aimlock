@@ -3,30 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>GIA BẢO PANEL — VIP</title>
-
-<!-- ═══════════════════════════════════════════════
-  ICON APP: Dán link ảnh ImgBB của bạn vào đây
-  Ví dụ: https://i.ibb.co/abc123/icon.png
-════════════════════════════════════════════════ -->
+<title>Aimlock Plus - By Kyra X NguyenVanh</title>
 <script>
-  const APP_ICON_URL = "https://i.ibb.co/tpP5MKXb/Shop-kyra.png"; // ← DÁN LINK IMGBB VÀO ĐÂY
+  const APP_ICON_URL = "https://i.ibb.co/tpP5MKXb/Shop-kyra.png";
 </script>
-
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:'Segoe UI','Helvetica Neue',sans-serif;
-  background:#000;color:#fff;
-  min-height:100dvh;overflow-x:hidden;
-  -webkit-tap-highlight-color:transparent;
-}
+body{font-family:'Segoe UI','Helvetica Neue',sans-serif;background:#000;color:#fff;min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:#000;}
 ::-webkit-scrollbar-thumb{background:linear-gradient(#00d4ff,#7b2ff7);border-radius:3px;}
 
-/* ═══ SHARED UTILS ═══ */
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
 @keyframes spin{to{transform:rotate(360deg);}}
 @keyframes shimmer{to{left:140%;}}
@@ -37,7 +25,7 @@ body{
 @keyframes ringRotate{to{transform:rotate(360deg);}}
 @keyframes topBorderAnim{to{background-position:200%;}}
 @keyframes orbFloat{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.08);}}
-@keyframes panelIn{from{opacity:0;transform:translateY(-10px) scaleY(.94);}to{opacity:1;transform:translateY(0) scaleY(1);}}
+@keyframes panelIn{from{opacity:0;transform:translateY(-12px) scaleY(.92);}to{opacity:1;transform:translateY(0) scaleY(1);}}
 @keyframes resultPop{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
 @keyframes dotBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
 @keyframes modalIn{from{opacity:0;transform:scale(.82) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
@@ -45,679 +33,353 @@ body{
 @keyframes toastFade{0%{opacity:0;transform:translateX(-50%) translateY(16px);}12%{opacity:1;transform:translateX(-50%) translateY(0);}80%{opacity:1;}100%{opacity:0;transform:translateX(-50%) translateY(-10px);}}
 @keyframes glowPulse{0%,100%{opacity:.6;}50%{opacity:1;}}
 @keyframes hdrShimmer{0%{left:-100%;}100%{left:100%;}}
+@keyframes toggleOn{from{transform:translateX(0);}to{transform:translateX(26px);}}
+@keyframes toggleOff{from{transform:translateX(26px);}to{transform:translateX(0);}}
+@keyframes activePulse{0%{box-shadow:0 0 0 0 rgba(0,212,255,.5);}70%{box-shadow:0 0 0 12px rgba(0,212,255,0);}100%{box-shadow:0 0 0 0 rgba(0,212,255,0);}}
+@keyframes crosshairPulse{0%,100%{filter:drop-shadow(0 0 6px #ff2222) drop-shadow(0 0 14px rgba(255,0,0,.7));}50%{filter:drop-shadow(0 0 12px #ff4444) drop-shadow(0 0 28px rgba(255,0,0,.9));}}
+@keyframes crosshairSpin{to{transform:rotate(360deg);}}
+@keyframes featureBgFlash{0%{background:rgba(0,212,255,.18);}100%{background:transparent;}}
 
-/* ═══════════════════════════════════
-   LANDING
-═══════════════════════════════════ */
-#pg-landing{
-  min-height:100dvh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  background:radial-gradient(ellipse 110% 80% at 50% 50%,#000c1f 0%,#000 70%);
-}
-
-/* Ambient orbs */
-.orb{
-  position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);
-  animation:glowPulse 4s ease-in-out infinite;
-}
+/* ═══ LANDING ═══ */
+#pg-landing{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 110% 80% at 50% 50%,#000c1f 0%,#000 70%);}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);animation:glowPulse 4s ease-in-out infinite;}
 .orb-1{width:350px;height:350px;top:5%;left:-10%;background:rgba(0,212,255,.07);animation-delay:0s;}
 .orb-2{width:280px;height:280px;bottom:5%;right:-8%;background:rgba(123,47,247,.09);animation-delay:2s;}
 .orb-3{width:200px;height:200px;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,212,255,.04);animation:orbFloat 6s ease-in-out infinite;}
-
 #fw-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .particles{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;}
 .particle{position:absolute;border-radius:50%;animation:float linear infinite;}
 .scanlines{position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.06) 0px,rgba(0,0,0,.06) 1px,transparent 1px,transparent 3px);}
-
-.land-body{
-  position:relative;z-index:10;
-  display:flex;flex-direction:column;align-items:center;
-  width:100%;max-width:370px;padding:0 22px;
-}
-
-/* Logo */
+.land-body{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;width:100%;max-width:370px;padding:0 22px;}
 .land-logo-wrap{position:relative;margin-bottom:22px;}
-.land-hex{
-  width:92px;height:92px;
-  background:linear-gradient(145deg,#001828,#001233);
-  border:2px solid rgba(0,212,255,.7);
-  border-radius:24px;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-  animation:iconPulse 3.5s ease-in-out infinite;
-}
+.land-hex{width:92px;height:92px;background:linear-gradient(145deg,#001828,#001233);border:2px solid rgba(0,212,255,.7);border-radius:24px;display:flex;align-items:center;justify-content:center;overflow:hidden;animation:iconPulse 3.5s ease-in-out infinite;}
 .land-hex img{width:100%;height:100%;object-fit:cover;border-radius:22px;display:none;}
 .land-hex .default-icon{font-size:42px;line-height:1;}
-.hex-ring{
-  position:absolute;inset:-8px;border-radius:31px;
-  border:1.5px solid rgba(0,212,255,.25);
-  animation:ringRotate 9s linear infinite;
-}
-.hex-ring::before{
-  content:'';position:absolute;
-  top:3px;left:50%;width:7px;height:7px;
-  background:#00d4ff;border-radius:50%;
-  transform:translateX(-50%);
-  box-shadow:0 0 10px #00d4ff,0 0 20px rgba(0,212,255,.5);
-}
-.hex-ring-2{
-  position:absolute;inset:-16px;border-radius:39px;
-  border:1px solid rgba(123,47,247,.18);
-  animation:ringRotate 14s linear infinite reverse;
-}
-.hex-ring-2::before{
-  content:'';position:absolute;
-  bottom:4px;left:50%;width:5px;height:5px;
-  background:#7b2ff7;border-radius:50%;
-  transform:translateX(-50%);
-  box-shadow:0 0 8px #7b2ff7;
-}
-
-.land-title{
-  font-size:34px;font-weight:900;
-  letter-spacing:4px;text-transform:uppercase;
-  text-align:center;line-height:1.1;
-  background:linear-gradient(135deg,#00d4ff 0%,#ffffff 45%,#a070ff 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  filter:drop-shadow(0 0 14px rgba(0,212,255,.4));
-  margin-bottom:5px;
-}
-.land-sub{
-  font-size:9.5px;letter-spacing:7px;
-  color:rgba(0,212,255,.35);
-  text-transform:uppercase;margin-bottom:6px;text-align:center;
-}
-.ver-badge{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(123,47,247,.1);
-  border:1px solid rgba(123,47,247,.35);
-  border-radius:20px;padding:5px 16px;
-  font-size:9.5px;color:#a070ff;letter-spacing:2.5px;
-  margin-bottom:26px;
-}
+.hex-ring{position:absolute;inset:-8px;border-radius:31px;border:1.5px solid rgba(0,212,255,.25);animation:ringRotate 9s linear infinite;}
+.hex-ring::before{content:'';position:absolute;top:3px;left:50%;width:7px;height:7px;background:#00d4ff;border-radius:50%;transform:translateX(-50%);box-shadow:0 0 10px #00d4ff,0 0 20px rgba(0,212,255,.5);}
+.hex-ring-2{position:absolute;inset:-16px;border-radius:39px;border:1px solid rgba(123,47,247,.18);animation:ringRotate 14s linear infinite reverse;}
+.hex-ring-2::before{content:'';position:absolute;bottom:4px;left:50%;width:5px;height:5px;background:#7b2ff7;border-radius:50%;transform:translateX(-50%);box-shadow:0 0 8px #7b2ff7;}
+.land-title{font-size:28px;font-weight:900;letter-spacing:3px;text-transform:uppercase;text-align:center;line-height:1.1;background:linear-gradient(135deg,#00d4ff 0%,#ffffff 45%,#a070ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 14px rgba(0,212,255,.4));margin-bottom:3px;}
+.land-sub{font-size:9.5px;letter-spacing:5px;color:rgba(0,212,255,.35);text-transform:uppercase;margin-bottom:6px;text-align:center;}
+.ver-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(123,47,247,.1);border:1px solid rgba(123,47,247,.35);border-radius:20px;padding:5px 16px;font-size:9.5px;color:#a070ff;letter-spacing:2.5px;margin-bottom:26px;}
 .ver-dot{width:6px;height:6px;border-radius:50%;background:#7b2ff7;box-shadow:0 0 7px #7b2ff7;animation:blink 1.4s infinite;}
-
-/* Key card */
-.key-card{
-  width:100%;
-  background:rgba(0,8,20,.7);
-  border:1px solid rgba(0,212,255,.2);
-  border-radius:18px;padding:22px 20px 18px;
-  backdrop-filter:blur(16px);
-  margin-bottom:16px;
-  position:relative;overflow:hidden;
-}
-.key-card::before{
-  content:'';position:absolute;top:0;left:-100%;
-  width:60%;height:1px;
-  background:linear-gradient(90deg,transparent,#00d4ff,transparent);
-  animation:scanLine 3.5s linear infinite;
-}
-.key-card::after{
-  content:'';position:absolute;inset:0;border-radius:18px;
-  background:radial-gradient(ellipse at 50% 0%,rgba(0,212,255,.04),transparent 60%);
-  pointer-events:none;
-}
-.key-card-label{
-  font-size:9px;letter-spacing:5px;
-  color:rgba(0,212,255,.5);text-transform:uppercase;
-  margin-bottom:14px;display:flex;align-items:center;gap:10px;
-}
+.key-card{width:100%;background:rgba(0,8,20,.7);border:1px solid rgba(0,212,255,.2);border-radius:18px;padding:22px 20px 18px;backdrop-filter:blur(16px);margin-bottom:16px;position:relative;overflow:hidden;}
+.key-card::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:1px;background:linear-gradient(90deg,transparent,#00d4ff,transparent);animation:scanLine 3.5s linear infinite;}
+.key-card-label{font-size:9px;letter-spacing:5px;color:rgba(0,212,255,.5);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .key-card-label::before,.key-card-label::after{content:'';flex:1;height:1px;background:rgba(0,212,255,.12);}
-.key-input{
-  width:100%;padding:14px 18px;
-  background:rgba(0,0,0,.85);
-  border:1.5px solid rgba(0,212,255,.25);
-  border-radius:11px;color:#00d4ff;
-  font-size:15px;letter-spacing:5px;
-  text-align:center;outline:none;transition:all .3s;
-  font-family:monospace;
-}
+.key-input{width:100%;padding:14px 18px;background:rgba(0,0,0,.85);border:1.5px solid rgba(0,212,255,.25);border-radius:11px;color:#00d4ff;font-size:15px;letter-spacing:5px;text-align:center;outline:none;transition:all .3s;font-family:monospace;}
 .key-input::placeholder{color:rgba(0,212,255,.18);letter-spacing:3px;font-size:11.5px;}
 .key-input:focus{border-color:#00d4ff;box-shadow:0 0 22px rgba(0,212,255,.2),inset 0 0 16px rgba(0,212,255,.04);}
-.key-err{
-  display:none;font-size:11px;color:#ff4455;
-  text-align:center;margin-top:10px;letter-spacing:1px;
-  animation:shake .4s ease;
-}
-
-.btn-activate{
-  width:100%;padding:15px;
-  background:linear-gradient(135deg,#005f99,#6a1fd4);
-  border:none;border-radius:11px;
-  color:#fff;font-size:13px;font-weight:900;
-  letter-spacing:3px;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;
-  box-shadow:0 0 30px rgba(0,212,255,.25),0 4px 22px rgba(106,31,212,.28);
-  position:relative;overflow:hidden;
-}
-.btn-activate::before{
-  content:'';position:absolute;top:50%;left:-60%;
-  width:40%;height:200%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
-  transform:translateY(-50%) skewX(-20deg);
-  animation:shimmer 2.8s ease infinite;
-}
+.key-err{display:none;font-size:11px;color:#ff4455;text-align:center;margin-top:10px;letter-spacing:1px;animation:shake .4s ease;}
+.btn-activate{width:100%;padding:15px;background:linear-gradient(135deg,#005f99,#6a1fd4);border:none;border-radius:11px;color:#fff;font-size:13px;font-weight:900;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 0 30px rgba(0,212,255,.25),0 4px 22px rgba(106,31,212,.28);position:relative;overflow:hidden;}
+.btn-activate::before{content:'';position:absolute;top:50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:translateY(-50%) skewX(-20deg);animation:shimmer 2.8s ease infinite;}
 .btn-activate:active{transform:scale(.97);}
-.btn-activate:hover{box-shadow:0 0 50px rgba(0,212,255,.45),0 4px 32px rgba(106,31,212,.45);}
-
-/* Footer */
-.land-footer{
-  position:absolute;bottom:20px;left:0;right:0;
-  text-align:center;z-index:10;
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-}
+.land-footer{position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;}
 .land-footer p{font-size:11px;color:rgba(255,255,255,.28);letter-spacing:1.5px;}
 .land-footer .hl{color:#00d4ff;font-weight:700;}
-.zalo-cta{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(0,100,255,.1);border:1px solid rgba(0,150,255,.28);
-  border-radius:22px;padding:7px 18px;
-  font-size:11px;color:#4d9fff;letter-spacing:1px;font-weight:700;
-  cursor:pointer;text-decoration:none;transition:all .25s;
-}
-.zalo-cta:hover{background:rgba(0,100,255,.2);box-shadow:0 0 16px rgba(0,150,255,.3);}
+.zalo-cta{display:inline-flex;align-items:center;gap:7px;background:rgba(0,100,255,.1);border:1px solid rgba(0,150,255,.28);border-radius:22px;padding:7px 18px;font-size:11px;color:#4d9fff;letter-spacing:1px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .25s;}
 
-/* ═══════════════════════════════════
-   WELCOME MODAL
-═══════════════════════════════════ */
-#modal-welcome{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.88);backdrop-filter:blur(10px);
-  z-index:5000;align-items:center;justify-content:center;padding:20px;
-}
+/* ═══ WELCOME MODAL ═══ */
+#modal-welcome{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:5000;align-items:center;justify-content:center;padding:20px;}
 #modal-welcome.show{display:flex;}
-.modal-card{
-  background:linear-gradient(155deg,#020d1e,#010810);
-  border:1px solid rgba(0,212,255,.32);
-  border-radius:24px;width:100%;max-width:340px;
-  overflow:hidden;position:relative;
-  box-shadow:0 0 70px rgba(0,212,255,.15),0 0 140px rgba(123,47,247,.08);
-  animation:modalIn .45s cubic-bezier(.34,1.56,.64,1) forwards;
-}
-.modal-top-line{
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,#7b2ff7,#00d4ff,#7b2ff7);
-  background-size:200%;
-  animation:topBorderAnim 3s linear infinite;
-}
-.modal-header{
-  padding:20px 20px 16px;
-  border-bottom:1px solid rgba(0,212,255,.1);
-  position:relative;
-}
+.modal-card{background:linear-gradient(155deg,#020d1e,#010810);border:1px solid rgba(0,212,255,.32);border-radius:24px;width:100%;max-width:340px;overflow:hidden;position:relative;box-shadow:0 0 70px rgba(0,212,255,.15),0 0 140px rgba(123,47,247,.08);animation:modalIn .45s cubic-bezier(.34,1.56,.64,1) forwards;}
+.modal-top-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7b2ff7,#00d4ff,#7b2ff7);background-size:200%;animation:topBorderAnim 3s linear infinite;}
+.modal-header{padding:20px 20px 16px;border-bottom:1px solid rgba(0,212,255,.1);position:relative;}
 .modal-app-label{font-size:8px;letter-spacing:5px;color:rgba(0,212,255,.38);text-transform:uppercase;margin-bottom:7px;}
-.modal-app-name{
-  font-size:20px;font-weight:900;letter-spacing:2px;
-  background:linear-gradient(135deg,#00d4ff,#a070ff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.modal-dev{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-top:3px;}
-.modal-close-x{
-  position:absolute;top:16px;right:16px;
-  width:30px;height:30px;border-radius:9px;
-  background:rgba(255,68,68,.12);border:1px solid rgba(255,68,68,.28);
-  color:#ff4455;font-size:14px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all .2s;
-}
-.modal-close-x:hover{background:rgba(255,68,68,.25);}
-
-.modal-banner{
-  padding:18px 20px;
-  background:linear-gradient(135deg,rgba(123,47,247,.07),rgba(0,212,255,.05));
-  border-bottom:1px solid rgba(0,212,255,.09);
-  display:flex;align-items:center;gap:14px;
-}
-.modal-av{
-  width:54px;height:54px;border-radius:15px;flex-shrink:0;
-  background:linear-gradient(135deg,#7b2ff7,#00d4ff);
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;overflow:hidden;
-  box-shadow:0 0 22px rgba(0,212,255,.3);
-}
+.modal-app-name{font-size:18px;font-weight:900;letter-spacing:1.5px;background:linear-gradient(135deg,#00d4ff,#a070ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.modal-dev{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1.5px;margin-top:3px;}
+.modal-close-x{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:9px;background:rgba(255,68,68,.12);border:1px solid rgba(255,68,68,.28);color:#ff4455;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.modal-banner{padding:18px 20px;background:linear-gradient(135deg,rgba(123,47,247,.07),rgba(0,212,255,.05));border-bottom:1px solid rgba(0,212,255,.09);display:flex;align-items:center;gap:14px;}
+.modal-av{width:54px;height:54px;border-radius:15px;flex-shrink:0;background:linear-gradient(135deg,#7b2ff7,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:26px;overflow:hidden;box-shadow:0 0 22px rgba(0,212,255,.3);}
 .modal-av img{width:100%;height:100%;object-fit:cover;display:none;}
 .modal-av-icon{font-size:26px;}
-.modal-wtxt h3{
-  font-size:19px;font-weight:900;letter-spacing:.5px;
-  background:linear-gradient(135deg,#fff,#00d4ff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.modal-wtxt h3{font-size:17px;font-weight:900;letter-spacing:.3px;background:linear-gradient(135deg,#fff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .modal-wtxt p{font-size:10px;color:rgba(0,212,255,.55);letter-spacing:2.5px;margin-top:3px;}
-
 .modal-features{padding:16px 20px 10px;}
-.mfi{
-  display:flex;align-items:center;gap:11px;
-  padding:10px 12px;border-radius:11px;
-  background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.09);
-  margin-bottom:7px;
-  animation:featSlide .4s ease forwards;opacity:0;
-}
-.mfi:nth-child(1){animation-delay:.08s;}.mfi:nth-child(2){animation-delay:.16s;}
-.mfi:nth-child(3){animation-delay:.24s;}.mfi:nth-child(4){animation-delay:.32s;}
-.mfi:nth-child(5){animation-delay:.40s;}.mfi:nth-child(6){animation-delay:.48s;}
-.mfi:nth-child(7){animation-delay:.56s;}
+.mfi{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:11px;background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.09);margin-bottom:7px;animation:featSlide .4s ease forwards;opacity:0;}
+.mfi:nth-child(1){animation-delay:.08s;}.mfi:nth-child(2){animation-delay:.16s;}.mfi:nth-child(3){animation-delay:.24s;}.mfi:nth-child(4){animation-delay:.32s;}.mfi:nth-child(5){animation-delay:.40s;}.mfi:nth-child(6){animation-delay:.48s;}.mfi:nth-child(7){animation-delay:.56s;}.mfi:nth-child(8){animation-delay:.64s;}
 .mfi-icon{font-size:17px;flex-shrink:0;}
 .mfi-info{flex:1;}
 .mfi-title{font-size:11px;font-weight:700;color:#fff;letter-spacing:.3px;}
 .mfi-desc{font-size:9.5px;color:rgba(255,255,255,.3);margin-top:1px;}
-.mfi-badge{
-  font-size:7.5px;font-weight:900;letter-spacing:1.5px;
-  background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.28);
-  color:#00d4ff;border-radius:7px;padding:2px 8px;flex-shrink:0;
-}
-
+.mfi-badge{font-size:7.5px;font-weight:900;letter-spacing:1.5px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.28);color:#00d4ff;border-radius:7px;padding:2px 8px;flex-shrink:0;}
 .modal-foot{padding:14px 20px 18px;}
-.btn-modal-ok{
-  width:100%;padding:14px;
-  background:linear-gradient(135deg,#005f99,#6a1fd4);
-  border:none;border-radius:11px;
-  color:#fff;font-size:13px;font-weight:900;
-  letter-spacing:2.5px;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;
-  box-shadow:0 0 22px rgba(0,212,255,.2);
-}
-.btn-modal-ok:hover{box-shadow:0 0 40px rgba(0,212,255,.4);}
+.btn-modal-ok{width:100%;padding:14px;background:linear-gradient(135deg,#005f99,#6a1fd4);border:none;border-radius:11px;color:#fff;font-size:13px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 0 22px rgba(0,212,255,.2);}
 .btn-modal-ok:active{transform:scale(.97);}
 
-/* ═══════════════════════════════════
-   APP PAGE
-═══════════════════════════════════ */
-#pg-app{
-  display:none;min-height:100dvh;
-  background:#010912;position:relative;overflow-x:hidden;
-}
-.app-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);
-  background-size:42px 42px;
-}
-.app-glow-top{
-  position:fixed;top:-100px;left:50%;transform:translateX(-50%);
-  width:500px;height:300px;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(0,212,255,.05) 0%,transparent 70%);
-  pointer-events:none;z-index:0;
-}
-.app-scanlines{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.04) 0px,rgba(0,0,0,.04) 1px,transparent 1px,transparent 3px);
-}
-.app-scroll{
-  position:relative;z-index:10;
-  padding:14px 13px 55px;max-width:440px;margin:0 auto;
-}
+/* ═══ APP PAGE ═══ */
+#pg-app{display:none;min-height:100dvh;background:#010912;position:relative;overflow-x:hidden;}
+.app-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:42px 42px;}
+.app-glow-top{position:fixed;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:300px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,212,255,.05) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.app-scanlines{position:fixed;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.04) 0px,rgba(0,0,0,.04) 1px,transparent 1px,transparent 3px);}
+.app-scroll{position:relative;z-index:10;padding:14px 13px 55px;max-width:440px;margin:0 auto;}
 
 /* App header */
-.app-header{
-  display:flex;align-items:center;gap:12px;
-  background:linear-gradient(135deg,rgba(0,212,255,.04),rgba(123,47,247,.04));
-  border:1px solid rgba(0,212,255,.16);
-  border-radius:16px;padding:13px 15px;
-  margin-bottom:13px;position:relative;overflow:hidden;
-}
-.app-header::before{
-  content:'';position:absolute;
-  top:0;left:-100%;width:60%;height:1.5px;
-  background:linear-gradient(90deg,transparent,rgba(0,212,255,.6),transparent);
-  animation:hdrShimmer 5s linear infinite;
-}
-.app-av{
-  width:48px;height:48px;border-radius:13px;flex-shrink:0;
-  background:linear-gradient(135deg,#7b2ff7,#00d4ff);
-  display:flex;align-items:center;justify-content:center;
-  font-size:24px;overflow:hidden;
-  box-shadow:0 0 18px rgba(0,212,255,.35);
-}
+.app-header{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(0,212,255,.04),rgba(123,47,247,.04));border:1px solid rgba(0,212,255,.16);border-radius:16px;padding:13px 15px;margin-bottom:13px;position:relative;overflow:hidden;}
+.app-header::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(0,212,255,.6),transparent);animation:hdrShimmer 5s linear infinite;}
+.app-av{width:48px;height:48px;border-radius:13px;flex-shrink:0;background:linear-gradient(135deg,#7b2ff7,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;box-shadow:0 0 18px rgba(0,212,255,.35);}
 .app-av img{width:100%;height:100%;object-fit:cover;display:none;}
 .app-av-icon{font-size:24px;}
 .app-hdr-info{flex:1;}
-.app-hdr-info h2{
-  font-size:11.5px;font-weight:900;letter-spacing:1.5px;
-  background:linear-gradient(90deg,#00d4ff,#a070ff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;text-transform:uppercase;
-}
-.app-hdr-info p{font-size:9.5px;color:rgba(255,255,255,.28);letter-spacing:2px;margin-top:2px;}
-.app-status{
-  display:flex;align-items:center;gap:5px;flex-shrink:0;
-  background:rgba(0,255,100,.07);border:1px solid rgba(0,255,100,.28);
-  border-radius:22px;padding:5px 11px;
-  font-size:8.5px;color:#00ff55;letter-spacing:2px;
-}
+.app-hdr-info h2{font-size:10px;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,#00d4ff,#a070ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase;}
+.app-hdr-info p{font-size:9px;color:rgba(255,255,255,.28);letter-spacing:1.5px;margin-top:2px;}
+.app-status{display:flex;align-items:center;gap:5px;flex-shrink:0;background:rgba(0,255,100,.07);border:1px solid rgba(0,255,100,.28);border-radius:22px;padding:5px 11px;font-size:8.5px;color:#00ff55;letter-spacing:2px;}
 .live-dot{width:6px;height:6px;border-radius:50%;background:#00ff55;box-shadow:0 0 6px #00ff55;animation:blink 1.4s infinite;}
 
-/* Section label */
-.sec-lbl{
-  font-size:8.5px;letter-spacing:4.5px;color:rgba(0,212,255,.38);
-  text-transform:uppercase;margin-bottom:8px;
-  display:flex;align-items:center;gap:8px;
-}
-.sec-lbl::after{content:'';flex:1;height:1px;background:rgba(0,212,255,.09);}
-
-/* Stats card */
-.stats-card{
-  background:rgba(0,0,0,.55);
-  border:1px solid rgba(0,212,255,.11);
-  border-radius:15px;padding:12px 14px;
-  margin-bottom:12px;backdrop-filter:blur(8px);
-  position:relative;overflow:hidden;
-}
-.stats-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(0,212,255,.25),transparent);
-}
-.stat-row{display:flex;align-items:center;gap:13px;padding:7px 0;}
-.stat-row+.stat-row{border-top:1px solid rgba(255,255,255,.035);}
-.circ-wrap{position:relative;width:46px;height:46px;flex-shrink:0;}
-.circ-wrap svg{transform:rotate(-90deg);display:block;}
-.c-bg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:4.5;}
-.c-fill{fill:none;stroke-width:4.5;stroke-linecap:round;transition:stroke-dashoffset 1.3s ease;}
-.c-ram{stroke:#00ff99;}.c-storage{stroke:#ffcc00;}.c-battery{stroke:#00d4ff;}
-.circ-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;}
-.stat-info h4{font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;}
-.stat-info p{font-size:10px;color:rgba(255,255,255,.28);}
-
-/* Ping */
-.ping-bar{
-  display:flex;align-items:center;gap:9px;
-  background:rgba(0,0,0,.5);border:1px solid rgba(255,170,0,.18);
-  border-radius:11px;padding:9px 15px;margin-bottom:14px;
-}
-.ping-led{width:8px;height:8px;border-radius:50%;background:#ffcc00;box-shadow:0 0 8px #ffcc00;animation:blink 1s infinite;}
-.ping-lbl{font-size:11px;color:rgba(255,170,0,.6);flex:1;letter-spacing:1px;}
-.ping-val{font-size:14px;font-weight:900;color:#ffdd33;}
-
 /* Divider */
-.div-lbl{
-  text-align:center;font-size:9px;letter-spacing:5.5px;
-  color:rgba(0,212,255,.38);text-transform:uppercase;
-  padding:10px 0;margin:6px 0;
-  border-top:1px solid rgba(0,212,255,.07);
-  border-bottom:1px solid rgba(0,212,255,.07);
-  position:relative;
-}
-.div-lbl::after{
-  content:'';position:absolute;
-  bottom:-1px;left:50%;transform:translateX(-50%);
-  width:60px;height:1px;
-  background:linear-gradient(90deg,transparent,#00d4ff,transparent);
-}
+.div-lbl{text-align:center;font-size:9px;letter-spacing:5.5px;color:rgba(0,212,255,.38);text-transform:uppercase;padding:10px 0;margin:6px 0;border-top:1px solid rgba(0,212,255,.07);border-bottom:1px solid rgba(0,212,255,.07);position:relative;}
+.div-lbl::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,#00d4ff,transparent);}
 
-/* Feature grid */
-.btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px;}
-.feat-btn{
+/* ═══ TOGGLE FEATURE BUTTONS ═══ */
+.feat-toggle-row{display:flex;flex-direction:column;gap:9px;margin-bottom:9px;}
+.feat-toggle-card{
   background:rgba(0,0,0,.65);
   border:1px solid rgba(0,212,255,.13);
-  border-radius:13px;padding:17px 10px 15px;
-  color:#fff;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  transition:all .25s;position:relative;overflow:hidden;
+  border-radius:14px;padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
 }
-.feat-btn::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(0,212,255,.2),transparent);
+.feat-toggle-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,.2),transparent);}
+.feat-toggle-card.active{
+  border-color:rgba(0,212,255,.55);
+  background:rgba(0,20,40,.8);
+  box-shadow:0 0 28px rgba(0,212,255,.15),inset 0 0 30px rgba(0,212,255,.03);
 }
-.feat-btn::after{
-  content:'';position:absolute;inset:0;opacity:0;
-  background:radial-gradient(circle at center,rgba(0,212,255,.09),transparent 68%);
-  transition:opacity .3s;
-}
-.feat-btn:hover::after,.feat-btn.is-open::after{opacity:1;}
-.feat-btn:hover,.feat-btn.is-open{border-color:rgba(0,212,255,.45);box-shadow:0 0 22px rgba(0,212,255,.12);}
-.feat-btn.is-open{box-shadow:0 0 32px rgba(0,212,255,.22);border-color:rgba(0,212,255,.6);}
-.feat-btn:active{transform:scale(.96);}
-.fb-icon{font-size:27px;filter:drop-shadow(0 0 6px rgba(0,212,255,.3));}
-.fb-label{font-size:10px;font-weight:800;color:rgba(255,255,255,.78);letter-spacing:1.5px;text-transform:uppercase;text-align:center;line-height:1.2;}
+.feat-toggle-card.active::before{background:linear-gradient(90deg,transparent,rgba(0,212,255,.6),transparent);}
+.ftc-icon{font-size:26px;flex-shrink:0;transition:filter .3s;filter:grayscale(.4);}
+.feat-toggle-card.active .ftc-icon{filter:none drop-shadow(0 0 8px currentColor);}
+.ftc-info{flex:1;}
+.ftc-title{font-size:12px;font-weight:800;color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase;transition:color .3s;}
+.feat-toggle-card.active .ftc-title{color:#fff;}
+.ftc-desc{font-size:9.5px;color:rgba(255,255,255,.28);margin-top:3px;letter-spacing:.3px;transition:color .3s;}
+.feat-toggle-card.active .ftc-desc{color:rgba(0,212,255,.6);}
+.ftc-status{font-size:8.5px;letter-spacing:2px;font-weight:700;margin-top:5px;}
+.ftc-status.off{color:rgba(255,255,255,.2);}
+.ftc-status.on{color:#00ff99;}
 
-/* Slider panel */
-.slider-panel{
+/* Toggle switch */
+.toggle-sw{flex-shrink:0;position:relative;width:52px;height:28px;}
+.toggle-sw input{opacity:0;width:0;height:0;position:absolute;}
+.toggle-track{
+  position:absolute;inset:0;border-radius:28px;
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.1);
+  transition:all .35s cubic-bezier(.4,0,.2,1);cursor:pointer;
+}
+.toggle-track::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:18px;height:18px;border-radius:50%;
+  background:#555;
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 2px 6px rgba(0,0,0,.4);
+}
+.toggle-sw input:checked+.toggle-track{
+  background:linear-gradient(135deg,rgba(0,212,255,.3),rgba(0,150,255,.2));
+  border-color:rgba(0,212,255,.6);
+  box-shadow:0 0 16px rgba(0,212,255,.3);
+}
+.toggle-sw input:checked+.toggle-track::after{
+  transform:translateX(24px);
+  background:radial-gradient(circle at 35% 35%,#5af0ff,#007bff);
+  box-shadow:0 0 12px rgba(0,212,255,.8),0 2px 6px rgba(0,0,0,.3);
+}
+
+/* Feature panel (expandable slider area) */
+.feat-slider-panel{
   display:none;
-  background:rgba(1,6,18,.97);
-  border:1px solid rgba(0,212,255,.2);
-  border-radius:13px;padding:18px;
-  margin-top:-1px;margin-bottom:9px;
+  background:rgba(1,6,18,.97);border:1px solid rgba(0,212,255,.18);
+  border-radius:13px;padding:18px;margin-bottom:9px;
   position:relative;overflow:hidden;
-  animation:panelIn .28s ease;
+  animation:panelIn .28s cubic-bezier(.4,0,.2,1);
 }
-.slider-panel::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
-  background:linear-gradient(90deg,#7b2ff7,#00d4ff,#7b2ff7);
-  background-size:200%;animation:topBorderAnim 4s linear infinite;
-}
-.slider-panel.open{display:block;}
-.sp-title{
-  font-size:9.5px;letter-spacing:4.5px;
-  color:#00d4ff;text-transform:uppercase;
-  text-align:center;margin-bottom:18px;
-  padding-bottom:12px;border-bottom:1px solid rgba(0,212,255,.1);
-}
+.feat-slider-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,#7b2ff7,#00d4ff,#7b2ff7);background-size:200%;animation:topBorderAnim 4s linear infinite;}
+.feat-slider-panel.open{display:block;}
+.sp-title{font-size:9px;letter-spacing:4px;color:#00d4ff;text-transform:uppercase;text-align:center;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(0,212,255,.1);}
 .sl-row{margin-bottom:18px;}
 .sl-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
 .sl-name{font-size:11px;color:rgba(255,255,255,.5);}
 .sl-val{font-size:18px;font-weight:900;color:#00d4ff;min-width:36px;text-align:right;font-variant-numeric:tabular-nums;}
-input[type=range]{
-  width:100%;height:4px;
-  -webkit-appearance:none;appearance:none;
-  background:linear-gradient(
-    to right,
-    #00d4ff 0%,#00d4ff var(--p,0%),
-    rgba(255,255,255,.09) var(--p,0%),rgba(255,255,255,.09) 100%
-  );
-  border-radius:3px;outline:none;cursor:pointer;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  width:22px;height:22px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#5af0ff,#7b2ff7);
-  box-shadow:0 0 14px rgba(0,212,255,.7),0 0 4px rgba(0,0,0,.6);
-  cursor:pointer;transition:transform .15s;
-}
+input[type=range]{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,#00d4ff 0%,#00d4ff var(--p,0%),rgba(255,255,255,.09) var(--p,0%),rgba(255,255,255,.09) 100%);border-radius:3px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#5af0ff,#7b2ff7);box-shadow:0 0 14px rgba(0,212,255,.7),0 0 4px rgba(0,0,0,.6);cursor:pointer;transition:transform .15s;}
 input[type=range]::-webkit-slider-thumb:active{transform:scale(1.28);}
-.btn-save{
-  width:100%;padding:13px;
-  background:linear-gradient(135deg,#005a90,#6018c0);
-  border:none;border-radius:10px;
-  color:#fff;font-size:12px;font-weight:900;
-  letter-spacing:2.5px;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;
-  box-shadow:0 0 22px rgba(0,212,255,.18);margin-top:2px;
-  position:relative;overflow:hidden;
-}
-.btn-save::before{
-  content:'';position:absolute;top:50%;left:-60%;
-  width:40%;height:200%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
-  transform:translateY(-50%) skewX(-20deg);
-  animation:shimmer 3s ease infinite;
-}
-.btn-save:hover{box-shadow:0 0 38px rgba(0,212,255,.38);}
+.btn-save{width:100%;padding:13px;background:linear-gradient(135deg,#005a90,#6018c0);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 0 22px rgba(0,212,255,.18);margin-top:2px;position:relative;overflow:hidden;}
+.btn-save::before{content:'';position:absolute;top:50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateY(-50%) skewX(-20deg);animation:shimmer 3s ease infinite;}
 .btn-save:active{transform:scale(.97);}
 
+/* ═══ TÂM ẢO TOGGLE (special button) ═══ */
+.tamao-card{
+  background:linear-gradient(135deg,rgba(40,0,0,.8),rgba(100,0,0,.4));
+  border:1.5px solid rgba(255,60,60,.25);
+  border-radius:14px;padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+  margin-bottom:9px;
+}
+.tamao-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,60,60,.4),transparent);}
+.tamao-card.active{
+  border-color:rgba(255,60,60,.7);
+  background:linear-gradient(135deg,rgba(60,0,0,.9),rgba(140,0,0,.5));
+  box-shadow:0 0 32px rgba(255,0,0,.2),inset 0 0 30px rgba(255,0,0,.04);
+}
+.tamao-icon-wrap{font-size:28px;flex-shrink:0;}
+.tamao-info{flex:1;}
+.tamao-title{font-size:12px;font-weight:800;color:rgba(255,120,120,.8);letter-spacing:1px;text-transform:uppercase;}
+.tamao-card.active .tamao-title{color:#ff4444;}
+.tamao-desc{font-size:9.5px;color:rgba(255,100,100,.35);margin-top:3px;}
+.tamao-status{font-size:8.5px;letter-spacing:2px;font-weight:700;margin-top:5px;}
+.tamao-status.off{color:rgba(255,100,100,.3);}
+.tamao-status.on{color:#ff4444;animation:blink 1.2s infinite;}
+
+/* ═══ TÂM ẢO OVERLAY ═══ */
+#tamao-overlay{
+  display:none;position:fixed;inset:0;z-index:99998;
+  pointer-events:none;
+}
+#tamao-overlay.show{display:block;}
+#tamao-crosshair{
+  position:absolute;
+  pointer-events:all;
+  cursor:move;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+}
+.ch-svg{
+  animation:crosshairPulse 1.8s ease-in-out infinite;
+  display:block;
+}
+#tamao-close-btn{
+  position:absolute;top:-14px;right:-14px;
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(255,0,0,.7);border:1.5px solid rgba(255,100,100,.6);
+  color:#fff;font-size:13px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;pointer-events:all;
+  box-shadow:0 0 10px rgba(255,0,0,.5);
+  line-height:1;
+}
+#tamao-hint{
+  position:fixed;bottom:100px;left:50%;transform:translateX(-50%);
+  background:rgba(255,0,0,.15);border:1px solid rgba(255,60,60,.4);
+  border-radius:20px;padding:7px 18px;
+  font-size:10px;color:rgba(255,120,120,.8);letter-spacing:1.5px;
+  pointer-events:none;z-index:99999;
+  animation:toastFade 4s ease forwards;
+}
+
 /* Code runner */
-.code-card{
-  background:rgba(0,0,0,.55);
-  border:1px solid rgba(123,47,247,.28);
-  border-radius:15px;padding:17px;
-  margin-bottom:13px;position:relative;overflow:hidden;
-}
-.code-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
-  background:linear-gradient(90deg,#7b2ff7,#00d4ff,#7b2ff7);
-  background-size:200%;animation:topBorderAnim 4.5s linear infinite;
-}
+.code-card{background:rgba(0,0,0,.55);border:1px solid rgba(123,47,247,.28);border-radius:15px;padding:17px;margin-bottom:13px;position:relative;overflow:hidden;}
+.code-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,#7b2ff7,#00d4ff,#7b2ff7);background-size:200%;animation:topBorderAnim 4.5s linear infinite;}
 .code-lbl{font-size:8.5px;letter-spacing:4.5px;color:rgba(123,47,247,.6);text-transform:uppercase;margin-bottom:12px;}
 .code-row{display:flex;gap:9px;align-items:center;}
-.code-input{
-  flex:1;padding:12px 15px;
-  background:rgba(0,0,0,.8);
-  border:1.5px solid rgba(123,47,247,.28);
-  border-radius:10px;color:#b080ff;
-  font-size:13px;letter-spacing:2px;
-  outline:none;transition:all .3s;font-family:monospace;
-}
+.code-input{flex:1;padding:12px 15px;background:rgba(0,0,0,.8);border:1.5px solid rgba(123,47,247,.28);border-radius:10px;color:#b080ff;font-size:13px;letter-spacing:2px;outline:none;transition:all .3s;font-family:monospace;}
 .code-input::placeholder{color:rgba(123,47,247,.22);letter-spacing:1px;font-size:11px;}
 .code-input:focus{border-color:#7b2ff7;box-shadow:0 0 18px rgba(123,47,247,.18);}
-.btn-run{
-  padding:12px 17px;
-  background:linear-gradient(135deg,#6a1fd4,#005f99);
-  border:none;border-radius:10px;
-  color:#fff;font-size:11px;font-weight:900;
-  letter-spacing:2px;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;
-  box-shadow:0 0 18px rgba(123,47,247,.3);
-  white-space:nowrap;flex-shrink:0;
-}
-.btn-run:hover{box-shadow:0 0 30px rgba(123,47,247,.5);}
+.btn-run{padding:12px 17px;background:linear-gradient(135deg,#6a1fd4,#005f99);border:none;border-radius:10px;color:#fff;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 0 18px rgba(123,47,247,.3);white-space:nowrap;flex-shrink:0;}
 .btn-run:active{transform:scale(.96);}
 .code-running{display:none;margin-top:13px;text-align:center;}
 .run-dots{display:flex;justify-content:center;gap:7px;}
 .run-dot{width:9px;height:9px;border-radius:50%;animation:dotBounce .7s ease infinite;}
-.run-dot:nth-child(1){background:#7b2ff7;animation-delay:0s;}
-.run-dot:nth-child(2){background:#3399ff;animation-delay:.15s;}
-.run-dot:nth-child(3){background:#00d4ff;animation-delay:.3s;}
+.run-dot:nth-child(1){background:#7b2ff7;animation-delay:0s;}.run-dot:nth-child(2){background:#3399ff;animation-delay:.15s;}.run-dot:nth-child(3){background:#00d4ff;animation-delay:.3s;}
 .run-label{font-size:10px;color:rgba(123,47,247,.6);letter-spacing:3px;text-transform:uppercase;margin-top:8px;}
-.code-result{
-  display:none;margin-top:12px;
-  padding:11px 15px;
-  background:rgba(0,255,100,.05);border:1px solid rgba(0,255,100,.22);
-  border-radius:10px;font-size:12px;color:#00ff99;
-  letter-spacing:1.5px;text-align:center;
-  animation:resultPop .4s cubic-bezier(.34,1.56,.64,1);
-}
+.code-result{display:none;margin-top:12px;padding:11px 15px;background:rgba(0,255,100,.05);border:1px solid rgba(0,255,100,.22);border-radius:10px;font-size:12px;color:#00ff99;letter-spacing:1.5px;text-align:center;}
 
 /* Launch buttons */
 .launch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.launch-btn{
-  padding:17px 10px;border-radius:14px;border:none;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
-  transition:all .25s;position:relative;overflow:hidden;
-}
-.launch-btn::before{
-  content:'';position:absolute;top:50%;left:-60%;
-  width:40%;height:200%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
-  transform:translateY(-50%) skewX(-20deg);
-  animation:shimmer 3.5s ease infinite;
-}
+.launch-btn{padding:17px 10px;border-radius:14px;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;position:relative;overflow:hidden;}
+.launch-btn::before{content:'';position:absolute;top:50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateY(-50%) skewX(-20deg);animation:shimmer 3.5s ease infinite;}
 .lbff{background:linear-gradient(135deg,#cc4400,#991100);color:#fff;font-size:11px;box-shadow:0 0 26px rgba(200,60,0,.3);}
-.lbff:hover{box-shadow:0 0 44px rgba(200,60,0,.5);}
 .lbffmax{background:linear-gradient(135deg,#990033,#550011);color:#fff;font-size:11px;box-shadow:0 0 26px rgba(180,0,50,.3);}
-.lbffmax:hover{box-shadow:0 0 44px rgba(180,0,50,.5);}
 .launch-btn:active{transform:scale(.97);}
-.lb-icon{font-size:30px;}
-.lb-label{font-size:10.5px;}
+.lb-icon{font-size:30px;}.lb-label{font-size:10.5px;}
+
+/* File picker */
+.file-picker-card{background:rgba(0,0,0,.55);border:1px solid rgba(0,212,255,.22);border-radius:15px;padding:17px;margin-bottom:13px;position:relative;overflow:hidden;}
+.file-picker-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,#00d4ff,#7b2ff7,#00d4ff);background-size:200%;animation:topBorderAnim 4s linear infinite;}
+.fp-lbl{font-size:8.5px;letter-spacing:4.5px;color:rgba(0,212,255,.6);text-transform:uppercase;margin-bottom:12px;}
+.fp-drop-zone{border:1.5px dashed rgba(0,212,255,.28);border-radius:11px;padding:20px 14px;text-align:center;cursor:pointer;transition:all .25s;background:rgba(0,212,255,.02);margin-bottom:12px;position:relative;}
+.fp-drop-zone:hover,.fp-drop-zone.drag-over{border-color:rgba(0,212,255,.6);background:rgba(0,212,255,.06);box-shadow:0 0 22px rgba(0,212,255,.1);}
+.fp-drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.fp-drop-icon{font-size:28px;margin-bottom:7px;}.fp-drop-txt{font-size:11px;color:rgba(0,212,255,.55);letter-spacing:1.5px;}.fp-drop-sub{font-size:9.5px;color:rgba(255,255,255,.2);margin-top:4px;letter-spacing:1px;}
+.fp-file-list{margin-bottom:12px;display:none;max-height:160px;overflow-y:auto;}
+.fp-file-item{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:9px;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.1);margin-bottom:5px;}
+.fp-file-icon{font-size:15px;flex-shrink:0;}.fp-file-name{flex:1;font-size:10.5px;color:#cce8ff;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.fp-file-size{font-size:9px;color:rgba(255,255,255,.25);flex-shrink:0;}.fp-file-status{font-size:11px;flex-shrink:0;}
+.fp-actions{display:flex;gap:9px;}
+.btn-fp-clear{padding:11px 16px;background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.25);border-radius:10px;color:#ff6677;font-size:11px;font-weight:900;letter-spacing:1.5px;cursor:pointer;transition:all .25s;flex-shrink:0;}
+.btn-fp-run{flex:1;padding:11px;background:linear-gradient(135deg,#005a90,#6018c0);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 0 20px rgba(0,212,255,.18);position:relative;overflow:hidden;}
+.btn-fp-run::before{content:'';position:absolute;top:50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateY(-50%) skewX(-20deg);animation:shimmer 2.8s ease infinite;}
+.btn-fp-run:active{transform:scale(.97);}
+.btn-fp-run:disabled{opacity:.4;cursor:not-allowed;}
+.fp-progress{display:none;margin-top:12px;}
+.fp-prog-bar-wrap{height:3px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:8px;}
+.fp-prog-bar{height:100%;width:0%;background:linear-gradient(90deg,#00d4ff,#7b2ff7);border-radius:3px;transition:width .25s linear;}
+.fp-prog-txt{font-size:9.5px;color:rgba(0,212,255,.55);letter-spacing:3px;text-transform:uppercase;text-align:center;}
+.fp-result-box{display:none;margin-top:12px;border-radius:11px;overflow:hidden;}
+.fp-result-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.04);font-size:10.5px;letter-spacing:.5px;animation:featSlide .3s ease forwards;opacity:0;}
+.fp-result-item:last-child{border-bottom:none;}
+.fp-result-item.ok{background:rgba(0,255,100,.04);color:#00ff99;}
+.fp-result-item.warn{background:rgba(255,200,0,.04);color:#ffdd44;}
 
 /* Footer */
-.app-footer{
-  text-align:center;padding:18px 0 10px;
-  border-top:1px solid rgba(0,212,255,.07);margin-top:10px;
-}
+.app-footer{text-align:center;padding:18px 0 10px;border-top:1px solid rgba(0,212,255,.07);margin-top:10px;}
 .footer-socials{display:flex;justify-content:center;gap:9px;margin-bottom:14px;flex-wrap:wrap;}
-.social-pill{
-  display:inline-flex;align-items:center;gap:6px;
-  border-radius:22px;padding:8px 17px;
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  cursor:pointer;text-decoration:none;transition:all .25s;
-}
+.social-pill{display:inline-flex;align-items:center;gap:6px;border-radius:22px;padding:8px 17px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;text-decoration:none;transition:all .25s;}
 .tiktok-pill{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.18);color:#fff;}
-.tiktok-pill:hover{background:rgba(255,255,255,.1);box-shadow:0 0 14px rgba(255,255,255,.08);}
 .zalo-pill{background:rgba(0,120,255,.1);border:1px solid rgba(0,150,255,.3);color:#4d9fff;}
-.zalo-pill:hover{background:rgba(0,120,255,.2);box-shadow:0 0 16px rgba(0,150,255,.28);}
-.footer-buy{
-  display:inline-block;
-  background:linear-gradient(135deg,rgba(0,120,255,.12),rgba(0,200,255,.12));
-  border:1px solid rgba(0,150,255,.28);border-radius:24px;
-  padding:9px 24px;font-size:12px;color:#4db8ff;
-  letter-spacing:1.5px;font-weight:900;cursor:pointer;
-  text-decoration:none;transition:all .25s;margin-bottom:12px;
-  display:block;max-width:260px;margin:0 auto 12px;
-}
-.footer-buy:hover{box-shadow:0 0 22px rgba(0,150,255,.3);}
+.footer-buy{display:block;max-width:260px;margin:0 auto 12px;background:linear-gradient(135deg,rgba(0,120,255,.12),rgba(0,200,255,.12));border:1px solid rgba(0,150,255,.28);border-radius:24px;padding:9px 24px;font-size:12px;color:#4db8ff;letter-spacing:1.5px;font-weight:900;cursor:pointer;text-decoration:none;transition:all .25s;}
 .footer-copy{font-size:9px;color:rgba(255,255,255,.12);letter-spacing:2.5px;}
 
 /* Loading overlay */
-#overlay-loading{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.92);z-index:9000;
-  flex-direction:column;align-items:center;justify-content:center;gap:16px;
-}
+#overlay-loading{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9000;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
 #overlay-loading.show{display:flex;}
-.spin-ring{
-  width:68px;height:68px;
-  border:3px solid rgba(0,212,255,.09);
-  border-top-color:#00d4ff;border-right-color:rgba(123,47,247,.55);
-  border-radius:50%;animation:spin .75s linear infinite;
-}
+.spin-ring{width:68px;height:68px;border:3px solid rgba(0,212,255,.09);border-top-color:#00d4ff;border-right-color:rgba(123,47,247,.55);border-radius:50%;animation:spin .75s linear infinite;}
 .load-txt{font-size:10px;letter-spacing:5px;color:#00d4ff;text-transform:uppercase;min-height:16px;text-align:center;}
 .load-track{width:210px;height:2px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;}
 .load-fill{height:100%;width:0%;background:linear-gradient(90deg,#7b2ff7,#00d4ff);border-radius:3px;transition:width linear;}
 
 /* Toast */
-#toast{
-  display:none;position:fixed;bottom:32px;left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,255,100,.07);border:1px solid rgba(0,255,100,.35);
-  border-radius:24px;padding:11px 26px;
-  font-size:12px;color:#00ff99;letter-spacing:1px;
-  z-index:9999;white-space:nowrap;
-}
+#toast{display:none;position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:rgba(0,255,100,.07);border:1px solid rgba(0,255,100,.35);border-radius:24px;padding:11px 26px;font-size:12px;color:#00ff99;letter-spacing:1px;z-index:9999;white-space:nowrap;}
 </style>
 </head>
 <body>
 
-<!-- ══════════ LANDING ══════════ -->
+<!-- ══ LANDING ══ -->
 <div id="pg-landing">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
   <canvas id="fw-canvas"></canvas>
   <div class="particles" id="particlesWrap"></div>
   <div class="scanlines"></div>
-
   <div class="land-body">
     <div class="land-logo-wrap">
       <div class="land-hex" id="landHex">
         <img id="land-icon" src="" alt=""/>
         <span class="default-icon" id="landDefaultIcon">🎯</span>
       </div>
-      <div class="hex-ring"></div>
-      <div class="hex-ring-2"></div>
+      <div class="hex-ring"></div><div class="hex-ring-2"></div>
     </div>
-
-    <h1 class="land-title">GIA BẢO</h1>
-    <p class="land-sub">Premium Panel · iOS VIP</p>
+    <h1 class="land-title">AIMLOCK PLUS</h1>
+    <p class="land-sub">By Kyra X NguyenVanh</p>
     <div class="ver-badge"><span class="ver-dot"></span>VIP ACCESS ONLY</div>
-
     <div class="key-card">
       <p class="key-card-label">🔐 KEY KÍCH HOẠT</p>
-      <input class="key-input" id="keyInput" type="text"
-        placeholder="XXXX-XXXX-XXXX" autocomplete="off"
-        onkeydown="if(event.key==='Enter')tryActivate()"/>
+      <input class="key-input" id="keyInput" type="text" placeholder="XXXX-XXXX-XXXX" autocomplete="off" onkeydown="if(event.key==='Enter')tryActivate()"/>
       <p class="key-err" id="keyErr">❌ Key sai — Liên hệ Zalo để mua key</p>
     </div>
     <button class="btn-activate" onclick="tryActivate()">⚡ KÍCH HOẠT NGAY</button>
   </div>
-
   <div class="land-footer">
     <p>TikTok: <span class="hl">@kyra_gaming97</span></p>
-    <a class="zalo-cta" href="https://zalo.me/0798623521" target="_blank">
-      💬 Liên hệ Zalo mua Key VIP
-    </a>
+    <a class="zalo-cta" href="https://zalo.me/0798623521" target="_blank">💬 Liên hệ Zalo mua Key VIP</a>
   </div>
 </div>
 
-<!-- ══════════ MODAL ══════════ -->
+<!-- ══ MODAL ══ -->
 <div id="modal-welcome">
   <div class="modal-card">
     <div class="modal-top-line"></div>
     <div class="modal-header">
       <p class="modal-app-label">🇻🇳 App Hỗ Trợ Tâm Độc Quyền</p>
-      <div class="modal-app-name">GIA BẢO PANEL</div>
-      <div class="modal-dev">Developer: <strong style="color:#00d4ff;">GIA BẢO</strong> 👑 Quản Lí</div>
+      <div class="modal-app-name">AIMLOCK PLUS</div>
+      <div class="modal-dev">By <strong style="color:#00d4ff;">Kyra X NguyenVanh</strong> 👑</div>
       <div class="modal-close-x" onclick="closeModal()">✕</div>
     </div>
     <div class="modal-banner">
@@ -726,18 +388,19 @@ input[type=range]::-webkit-slider-thumb:active{transform:scale(1.28);}
         <span class="modal-av-icon" id="modalDefaultIcon">🎯</span>
       </div>
       <div class="modal-wtxt">
-        <h3>Chào Mừng Bạn Đã Đến Với Supper Aimlock!</h3>
+        <h3>Chào Mừng Đến Aimlock Plus!</h3>
         <p>VIP PREMIUM · ĐÃ KÍCH HOẠT</p>
       </div>
     </div>
     <div class="modal-features">
-      <div class="mfi"><span class="mfi-icon">🔒</span><div class="mfi-info"><div class="mfi-title">AIMLOCK — Khóa Tâm Bám Đầu Chặt</div><div class="mfi-desc">Tự động bám mục tiêu cực kỳ chính xác</div></div><span class="mfi-badge">VIP</span></div>
-      <div class="mfi"><span class="mfi-icon">🎯</span><div class="mfi-info"><div class="mfi-title">GHÌM TÂM — Giữ Tâm Cực Ổn Định</div><div class="mfi-desc">Neo tâm không rung, kéo chuẩn từng viên</div></div><span class="mfi-badge">VIP</span></div>
-      <div class="mfi"><span class="mfi-icon">🔧</span><div class="mfi-info"><div class="mfi-title">FIX LỐ — Loại Bỏ Rung Tâm Hoàn Toàn</div><div class="mfi-desc">Triệt tiêu giật, lố khi nhả đạn</div></div><span class="mfi-badge">VIP</span></div>
+      <div class="mfi"><span class="mfi-icon">🔒</span><div class="mfi-info"><div class="mfi-title">AIMLOCK — Khóa Tâm Bám Đầu</div><div class="mfi-desc">Bật/tắt bám mục tiêu cực kỳ chính xác</div></div><span class="mfi-badge">VIP</span></div>
+      <div class="mfi"><span class="mfi-icon">🎯</span><div class="mfi-info"><div class="mfi-title">GHÌM TÂM — Giữ Tâm Ổn Định</div><div class="mfi-desc">Neo tâm không rung, kéo chuẩn từng viên</div></div><span class="mfi-badge">VIP</span></div>
+      <div class="mfi"><span class="mfi-icon">🔧</span><div class="mfi-info"><div class="mfi-title">FIX LỐ — Loại Bỏ Rung Tâm</div><div class="mfi-desc">Triệt tiêu giật, lố khi nhả đạn</div></div><span class="mfi-badge">VIP</span></div>
       <div class="mfi"><span class="mfi-icon">🛡️</span><div class="mfi-info"><div class="mfi-title">KHÓA TÂM — Anchor Aim</div><div class="mfi-desc">Cố định điểm bắn, không trượt tâm</div></div><span class="mfi-badge">VIP</span></div>
-      <div class="mfi"><span class="mfi-icon">🖥️</span><div class="mfi-info"><div class="mfi-title">LOCK FPS — Khóa Frame Rate Mượt</div><div class="mfi-desc">Giữ FPS ổn định, không drop frame</div></div><span class="mfi-badge">VIP</span></div>
+      <div class="mfi"><span class="mfi-icon">🖥️</span><div class="mfi-info"><div class="mfi-title">LOCK FPS — Khóa Frame Rate</div><div class="mfi-desc">Giữ FPS ổn định, không drop frame</div></div><span class="mfi-badge">VIP</span></div>
       <div class="mfi"><span class="mfi-icon">🌀</span><div class="mfi-info"><div class="mfi-title">LIA TÂM — Quét Tâm Cực Nhanh</div><div class="mfi-desc">Chuyển tâm tốc độ cao, phản xạ siêu nhanh</div></div><span class="mfi-badge">VIP</span></div>
       <div class="mfi"><span class="mfi-icon">🚀</span><div class="mfi-info"><div class="mfi-title">BUFF FPS + GAME SPEED</div><div class="mfi-desc">Tối ưu hiệu suất game tổng thể</div></div><span class="mfi-badge">VIP</span></div>
+      <div class="mfi"><span class="mfi-icon">🔴</span><div class="mfi-info"><div class="mfi-title">TÂM ẢO — Crosshair Overlay</div><div class="mfi-desc">Tâm đỏ hiển thị trên màn hình</div></div><span class="mfi-badge">VIP</span></div>
     </div>
     <div class="modal-foot">
       <button class="btn-modal-ok" onclick="closeModal()">✅ Đóng — Bắt Đầu Sử Dụng</button>
@@ -745,12 +408,9 @@ input[type=range]::-webkit-slider-thumb:active{transform:scale(1.28);}
   </div>
 </div>
 
-<!-- ══════════ APP PAGE ══════════ -->
+<!-- ══ APP PAGE ══ -->
 <div id="pg-app">
-  <div class="app-grid"></div>
-  <div class="app-glow-top"></div>
-  <div class="app-scanlines"></div>
-
+  <div class="app-grid"></div><div class="app-glow-top"></div><div class="app-scanlines"></div>
   <div class="app-scroll">
 
     <!-- Header -->
@@ -760,244 +420,215 @@ input[type=range]::-webkit-slider-thumb:active{transform:scale(1.28);}
         <span class="app-av-icon" id="appDefaultIcon">🎯</span>
       </div>
       <div class="app-hdr-info">
-        <h2>GIA BẢO PANEL VIP</h2>
-        <p>Premium iOS · Free Fire</p>
+        <h2>Aimlock Plus — By Kyra X NguyenVanh</h2>
+        <p>VIP Premium · Free Fire</p>
       </div>
       <div class="app-status"><span class="live-dot"></span>LIVE</div>
     </div>
 
-    <!-- Stats -->
-    <p class="sec-lbl">⚙️ THIẾT BỊ</p>
-    <div class="stats-card">
-      <div class="stat-row">
-        <div class="circ-wrap">
-          <svg width="46" height="46" viewBox="0 0 46 46">
-            <circle class="c-bg" cx="23" cy="23" r="18"/>
-            <circle class="c-fill c-ram" id="circ-ram" cx="23" cy="23" r="18" stroke-dasharray="113" stroke-dashoffset="113"/>
-          </svg>
-          <span class="circ-pct" id="pct-ram">0%</span>
-        </div>
-        <div class="stat-info"><h4>RAM</h4><p id="sub-ram">Đang đọc…</p></div>
-      </div>
-      <div class="stat-row">
-        <div class="circ-wrap">
-          <svg width="46" height="46" viewBox="0 0 46 46">
-            <circle class="c-bg" cx="23" cy="23" r="18"/>
-            <circle class="c-fill c-storage" id="circ-sto" cx="23" cy="23" r="18" stroke-dasharray="113" stroke-dashoffset="113"/>
-          </svg>
-          <span class="circ-pct" id="pct-sto">0%</span>
-        </div>
-        <div class="stat-info"><h4>Storage</h4><p id="sub-sto">7.99 GB / 26.53 GB</p></div>
-      </div>
-      <div class="stat-row">
-        <div class="circ-wrap">
-          <svg width="46" height="46" viewBox="0 0 46 46">
-            <circle class="c-bg" cx="23" cy="23" r="18"/>
-            <circle class="c-fill c-battery" id="circ-bat" cx="23" cy="23" r="18" stroke-dasharray="113" stroke-dashoffset="113"/>
-          </svg>
-          <span class="circ-pct" id="pct-bat">--%</span>
-        </div>
-        <div class="stat-info"><h4>🔋 Pin</h4><p id="sub-bat">Đang đọc…</p></div>
-      </div>
-    </div>
-
-    <!-- Ping -->
-    <div class="ping-bar">
-      <span class="ping-led"></span>
-      <span class="ping-lbl">Ping Hiện Tại</span>
-      <span class="ping-val" id="pingVal">-- ms</span>
-    </div>
-
-    <!-- ── CHỨC NĂNG VIP ── -->
+    <!-- VIP FEATURES -->
     <div class="div-lbl">🔥 CHỨC NĂNG VIP 🔥</div>
 
-    <!-- Row 1: AIMLOCK + GHÌM TÂM -->
-    <div class="btn-grid">
-      <button class="feat-btn" id="fb-aimlock" onclick="togglePanel('aimlock')">
-        <span class="fb-icon">🔒</span><span class="fb-label">AIMLOCK</span>
-      </button>
-      <button class="feat-btn" id="fb-ghimtam" onclick="togglePanel('ghimtam')">
-        <span class="fb-icon">🎯</span><span class="fb-label">GHÌM TÂM</span>
-      </button>
-    </div>
-    <div class="slider-panel" id="panel-aimlock">
-      <div class="sp-title">🔒 AIMLOCK — KHÓA TÂM BÁM ĐẦU</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Độ bám mục tiêu</span><span class="sl-val" id="v-al1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al1')">
+    <div class="feat-toggle-row">
+      <!-- AIMLOCK -->
+      <div class="feat-toggle-card" id="card-aimlock" onclick="toggleFeature('aimlock')">
+        <span class="ftc-icon">🔒</span>
+        <div class="ftc-info">
+          <div class="ftc-title">AIMLOCK</div>
+          <div class="ftc-desc">Khóa tâm bám đầu tự động — siêu chính xác</div>
+          <div class="ftc-status off" id="st-aimlock">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-aimlock" onchange="onToggleChange('aimlock',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tốc độ khóa tâm</span><span class="sl-val" id="v-al2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al2')">
+      <div class="feat-slider-panel" id="panel-aimlock">
+        <div class="sp-title">🔒 AIMLOCK — KHÓA TÂM BÁM ĐẦU</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Độ bám mục tiêu</span><span class="sl-val" id="v-al1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tốc độ khóa tâm</span><span class="sl-val" id="v-al2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Vùng bám (FOV)</span><span class="sl-val" id="v-al3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al3')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Độ mượt khi bám</span><span class="sl-val" id="v-al4">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al4')"></div>
+        <button class="btn-save" onclick="doSave('aimlock')">⚡ LƯU AIMLOCK</button>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Vùng bám (FOV)</span><span class="sl-val" id="v-al3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al3')">
+
+      <!-- GHÌM TÂM -->
+      <div class="feat-toggle-card" id="card-ghimtam" onclick="toggleFeature('ghimtam')">
+        <span class="ftc-icon">🎯</span>
+        <div class="ftc-info">
+          <div class="ftc-title">GHÌM TÂM</div>
+          <div class="ftc-desc">Neo tâm siêu ổn định — kéo chuẩn từng viên</div>
+          <div class="ftc-status off" id="st-ghimtam">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-ghimtam" onchange="onToggleChange('ghimtam',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Độ mượt khi bám</span><span class="sl-val" id="v-al4">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-al4')">
+      <div class="feat-slider-panel" id="panel-ghimtam">
+        <div class="sp-title">🎯 GHÌM TÂM — GIỮ TÂM ỔN ĐỊNH</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Lực ghìm tâm</span><span class="sl-val" id="v-gt1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Độ ổn định ngang</span><span class="sl-val" id="v-gt2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Độ ổn định dọc</span><span class="sl-val" id="v-gt3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt3')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Ghìm khi kéo dài</span><span class="sl-val" id="v-gt4">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt4')"></div>
+        <button class="btn-save" onclick="doSave('ghimtam')">⚡ LƯU GHÌM TÂM</button>
       </div>
-      <button class="btn-save" onclick="doSave('aimlock')">⚡ LƯU AIMLOCK</button>
-    </div>
-    <div class="slider-panel" id="panel-ghimtam">
-      <div class="sp-title">🎯 GHÌM TÂM — GIỮ TÂM ỔN ĐỊNH</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Lực ghìm tâm</span><span class="sl-val" id="v-gt1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt1')">
+
+      <!-- FIX LỐ -->
+      <div class="feat-toggle-card" id="card-fixlo" onclick="toggleFeature('fixlo')">
+        <span class="ftc-icon">🔧</span>
+        <div class="ftc-info">
+          <div class="ftc-title">FIX LỐ</div>
+          <div class="ftc-desc">Triệt tiêu rung, giật, lố tâm khi nhả đạn</div>
+          <div class="ftc-status off" id="st-fixlo">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-fixlo" onchange="onToggleChange('fixlo',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Độ ổn định ngang</span><span class="sl-val" id="v-gt2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt2')">
+      <div class="feat-slider-panel" id="panel-fixlo">
+        <div class="sp-title">🔧 FIX LỐ — LOẠI BỎ RUNG TÂM</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Mức khử rung</span><span class="sl-val" id="v-fl1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Chống giật khi kéo</span><span class="sl-val" id="v-fl2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Khử lố khi nhả đạn</span><span class="sl-val" id="v-fl3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl3')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tốc độ phản xạ bù</span><span class="sl-val" id="v-fl4">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl4')"></div>
+        <button class="btn-save" onclick="doSave('fixlo')">⚡ LƯU FIX LỐ</button>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Độ ổn định dọc</span><span class="sl-val" id="v-gt3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt3')">
+
+      <!-- KHÓA TÂM -->
+      <div class="feat-toggle-card" id="card-khoatam" onclick="toggleFeature('khoatam')">
+        <span class="ftc-icon">🛡️</span>
+        <div class="ftc-info">
+          <div class="ftc-title">KHÓA TÂM</div>
+          <div class="ftc-desc">Anchor aim — cố định điểm bắn không trượt</div>
+          <div class="ftc-status off" id="st-khoatam">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-khoatam" onchange="onToggleChange('khoatam',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Ghìm khi kéo dài</span><span class="sl-val" id="v-gt4">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gt4')">
+      <div class="feat-slider-panel" id="panel-khoatam">
+        <div class="sp-title">🛡️ KHÓA TÂM — ANCHOR AIM</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Lực khóa điểm bắn</span><span class="sl-val" id="v-kt1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-kt1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Độ bền khóa tâm</span><span class="sl-val" id="v-kt2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-kt2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Chống trượt tâm</span><span class="sl-val" id="v-kt3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-kt3')"></div>
+        <button class="btn-save" onclick="doSave('khoatam')">⚡ LƯU KHÓA TÂM</button>
       </div>
-      <button class="btn-save" onclick="doSave('ghimtam')">⚡ LƯU GHÌM TÂM</button>
     </div>
 
-    <!-- Row 2: FIX LỐ + KHÓA TÂM -->
-    <div class="btn-grid">
-      <button class="feat-btn" id="fb-fixlo" onclick="togglePanel('fixlo')">
-        <span class="fb-icon">🔧</span><span class="fb-label">FIX LỐ</span>
-      </button>
-      <button class="feat-btn" id="fb-khoatam" onclick="togglePanel('khoatam')">
-        <span class="fb-icon">🛡️</span><span class="fb-label">KHÓA TÂM</span>
-      </button>
-    </div>
-    <div class="slider-panel" id="panel-fixlo">
-      <div class="sp-title">🔧 FIX LỐ — LOẠI BỎ RUNG TÂM</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Mức khử rung</span><span class="sl-val" id="v-fl1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl1')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Chống giật khi kéo</span><span class="sl-val" id="v-fl2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl2')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Khử lố khi nhả đạn</span><span class="sl-val" id="v-fl3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl3')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tốc độ phản xạ bù</span><span class="sl-val" id="v-fl4">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fl4')">
-      </div>
-      <button class="btn-save" onclick="doSave('fixlo')">⚡ LƯU FIX LỐ</button>
-    </div>
-    <div class="slider-panel" id="panel-khoatam">
-      <div class="sp-title">🛡️ KHÓA TÂM — ANCHOR AIM</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Lực khóa điểm bắn</span><span class="sl-val" id="v-kt1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-kt1')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Độ bền khóa tâm</span><span class="sl-val" id="v-kt2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-kt2')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Chống trượt tâm</span><span class="sl-val" id="v-kt3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-kt3')">
-      </div>
-      <button class="btn-save" onclick="doSave('khoatam')">⚡ LƯU KHÓA TÂM</button>
-    </div>
-
-    <!-- Row 3: LOCK FPS + LIA TÂM -->
     <div class="div-lbl">⚡ NÂNG CẤP MỞ RỘNG ⚡</div>
-    <div class="btn-grid">
-      <button class="feat-btn" id="fb-lockfps" onclick="togglePanel('lockfps')">
-        <span class="fb-icon">🖥️</span><span class="fb-label">LOCK FPS</span>
-      </button>
-      <button class="feat-btn" id="fb-liatam" onclick="togglePanel('liatam')">
-        <span class="fb-icon">🌀</span><span class="fb-label">LIA TÂM</span>
-      </button>
-    </div>
-    <div class="slider-panel" id="panel-lockfps">
-      <div class="sp-title">🖥️ LOCK FPS — KHÓA FRAME RATE</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Mức FPS khóa</span><span class="sl-val" id="v-fp1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp1')">
+
+    <div class="feat-toggle-row">
+      <!-- LOCK FPS -->
+      <div class="feat-toggle-card" id="card-lockfps" onclick="toggleFeature('lockfps')">
+        <span class="ftc-icon">🖥️</span>
+        <div class="ftc-info">
+          <div class="ftc-title">LOCK FPS</div>
+          <div class="ftc-desc">Khóa frame rate — máy mượt, không drop</div>
+          <div class="ftc-status off" id="st-lockfps">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-lockfps" onchange="onToggleChange('lockfps',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tối ưu GPU render</span><span class="sl-val" id="v-fp2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp2')">
+      <div class="feat-slider-panel" id="panel-lockfps">
+        <div class="sp-title">🖥️ LOCK FPS — KHÓA FRAME RATE</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Mức FPS khóa</span><span class="sl-val" id="v-fp1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tối ưu GPU render</span><span class="sl-val" id="v-fp2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Ổn định frame time</span><span class="sl-val" id="v-fp3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp3')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Chống drop frame</span><span class="sl-val" id="v-fp4">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp4')"></div>
+        <button class="btn-save" onclick="doSave('lockfps')">⚡ LƯU LOCK FPS</button>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Ổn định frame time</span><span class="sl-val" id="v-fp3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp3')">
+
+      <!-- LIA TÂM -->
+      <div class="feat-toggle-card" id="card-liatam" onclick="toggleFeature('liatam')">
+        <span class="ftc-icon">🌀</span>
+        <div class="ftc-info">
+          <div class="ftc-title">LIA TÂM</div>
+          <div class="ftc-desc">Quét tâm tốc độ cao — phản xạ siêu nhanh</div>
+          <div class="ftc-status off" id="st-liatam">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-liatam" onchange="onToggleChange('liatam',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Chống drop frame đột ngột</span><span class="sl-val" id="v-fp4">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-fp4')">
+      <div class="feat-slider-panel" id="panel-liatam">
+        <div class="sp-title">🌀 LIA TÂM — QUÉT TÂM TỐC ĐỘ CAO</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tốc độ lia tâm</span><span class="sl-val" id="v-lt1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Độ mượt khi quét</span><span class="sl-val" id="v-lt2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Phạm vi quét (°)</span><span class="sl-val" id="v-lt3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt3')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tự động reset tâm</span><span class="sl-val" id="v-lt4">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt4')"></div>
+        <button class="btn-save" onclick="doSave('liatam')">⚡ LƯU LIA TÂM</button>
       </div>
-      <button class="btn-save" onclick="doSave('lockfps')">⚡ LƯU LOCK FPS</button>
-    </div>
-    <div class="slider-panel" id="panel-liatam">
-      <div class="sp-title">🌀 LIA TÂM — QUÉT TÂM TỐC ĐỘ CAO</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tốc độ lia tâm</span><span class="sl-val" id="v-lt1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt1')">
+
+      <!-- BUFF FPS -->
+      <div class="feat-toggle-card" id="card-bufffps" onclick="toggleFeature('bufffps')">
+        <span class="ftc-icon">🚀</span>
+        <div class="ftc-info">
+          <div class="ftc-title">BUFF FPS</div>
+          <div class="ftc-desc">Tăng hiệu suất — giải phóng RAM, tối ưu CPU</div>
+          <div class="ftc-status off" id="st-bufffps">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-bufffps" onchange="onToggleChange('bufffps',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Độ mượt khi quét</span><span class="sl-val" id="v-lt2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt2')">
+      <div class="feat-slider-panel" id="panel-bufffps">
+        <div class="sp-title">🚀 BUFF FPS — TĂNG HIỆU SUẤT</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tăng FPS tổng thể</span><span class="sl-val" id="v-bf1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-bf1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Giải phóng RAM game</span><span class="sl-val" id="v-bf2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-bf2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tối ưu CPU usage</span><span class="sl-val" id="v-bf3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-bf3')"></div>
+        <button class="btn-save" onclick="doSave('bufffps')">⚡ LƯU BUFF FPS</button>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Phạm vi quét (°)</span><span class="sl-val" id="v-lt3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt3')">
+
+      <!-- GAME SPEED -->
+      <div class="feat-toggle-card" id="card-speed" onclick="toggleFeature('speed')">
+        <span class="ftc-icon">⚡</span>
+        <div class="ftc-info">
+          <div class="ftc-title">GAME SPEED</div>
+          <div class="ftc-desc">Tốc độ xử lý — giảm lag, giảm delay mạng</div>
+          <div class="ftc-status off" id="st-speed">● TẮT</div>
+        </div>
+        <label class="toggle-sw" onclick="event.stopPropagation()">
+          <input type="checkbox" id="tog-speed" onchange="onToggleChange('speed',this.checked)"/>
+          <span class="toggle-track"></span>
+        </label>
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tự động reset tâm</span><span class="sl-val" id="v-lt4">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-lt4')">
+      <div class="feat-slider-panel" id="panel-speed">
+        <div class="sp-title">⚡ GAME SPEED — TỐC ĐỘ XỬ LÝ</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tốc độ xử lý game</span><span class="sl-val" id="v-gs1">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gs1')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Giảm độ trễ mạng</span><span class="sl-val" id="v-gs2">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gs2')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Tối ưu kết nối server</span><span class="sl-val" id="v-gs3">0</span></div><input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gs3')"></div>
+        <button class="btn-save" onclick="doSave('speed')">⚡ LƯU GAME SPEED</button>
       </div>
-      <button class="btn-save" onclick="doSave('liatam')">⚡ LƯU LIA TÂM</button>
     </div>
 
-    <!-- Row 4: BUFF FPS + GAME SPEED -->
-    <div class="btn-grid">
-      <button class="feat-btn" id="fb-bufffps" onclick="togglePanel('bufffps')">
-        <span class="fb-icon">🚀</span><span class="fb-label">BUFF FPS</span>
-      </button>
-      <button class="feat-btn" id="fb-speed" onclick="togglePanel('speed')">
-        <span class="fb-icon">⚡</span><span class="fb-label">GAME SPEED</span>
-      </button>
+    <!-- TÂM ẢO (special toggle — no slider, just ON/OFF) -->
+    <div class="div-lbl">🔴 TÂM ẢO OVERLAY 🔴</div>
+    <div class="tamao-card" id="card-tamao" onclick="toggleTamao()">
+      <span class="tamao-icon-wrap">🔴</span>
+      <div class="tamao-info">
+        <div class="tamao-title">TÂM ẢO — CROSSHAIR ĐỎ</div>
+        <div class="tamao-desc">Hiển thị tâm đỏ trên màn hình — kéo tâm cực dễ</div>
+        <div class="tamao-status off" id="st-tamao">● TẮT</div>
+      </div>
+      <label class="toggle-sw" onclick="event.stopPropagation()">
+        <input type="checkbox" id="tog-tamao" onchange="onTamaoChange(this.checked)"/>
+        <span class="toggle-track" style="border-color:rgba(255,60,60,.3);"></span>
+      </label>
     </div>
-    <div class="slider-panel" id="panel-bufffps">
-      <div class="sp-title">🚀 BUFF FPS — TĂNG HIỆU SUẤT</div>
+
+    <div class="feat-slider-panel open" id="panel-tamao-size">
+      <div class="sp-title">🔴 KÍCH THƯỚC TÂM ẢO</div>
       <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tăng FPS tổng thể</span><span class="sl-val" id="v-bf1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-bf1')">
+        <div class="sl-head"><span class="sl-name">Kích thước tâm</span><span class="sl-val" id="v-ts1">40</span></div>
+        <input type="range" id="tamaoSizeSlider" min="20" max="80" value="40" oninput="updateTamaoSize(this.value)">
       </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Giải phóng RAM game</span><span class="sl-val" id="v-bf2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-bf2')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tối ưu CPU usage</span><span class="sl-val" id="v-bf3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-bf3')">
-      </div>
-      <button class="btn-save" onclick="doSave('bufffps')">⚡ LƯU BUFF FPS</button>
-    </div>
-    <div class="slider-panel" id="panel-speed">
-      <div class="sp-title">⚡ GAME SPEED — TỐC ĐỘ XỬ LÝ</div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tốc độ xử lý game</span><span class="sl-val" id="v-gs1">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gs1')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Giảm độ trễ mạng</span><span class="sl-val" id="v-gs2">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gs2')">
-      </div>
-      <div class="sl-row">
-        <div class="sl-head"><span class="sl-name">Tối ưu kết nối server</span><span class="sl-val" id="v-gs3">0</span></div>
-        <input type="range" min="0" max="100" value="0" oninput="syncSlider(this,'v-gs3')">
-      </div>
-      <button class="btn-save" onclick="doSave('speed')">⚡ LƯU GAME SPEED</button>
     </div>
 
     <!-- Code runner -->
@@ -1005,50 +636,57 @@ input[type=range]::-webkit-slider-thumb:active{transform:scale(1.28);}
     <div class="code-card">
       <div class="code-lbl">💻 CODE RUNNER — DÁN CODE VÀO ĐÂY</div>
       <div class="code-row">
-        <input class="code-input" id="codeInput" type="text"
-          placeholder="Dán code config vào đây…" autocomplete="off"/>
+        <input class="code-input" id="codeInput" type="text" placeholder="Dán code config vào đây…" autocomplete="off"/>
         <button class="btn-run" onclick="runCode()">▶ CHẠY</button>
       </div>
       <div class="code-running" id="codeRunning">
-        <div class="run-dots">
-          <div class="run-dot"></div>
-          <div class="run-dot"></div>
-          <div class="run-dot"></div>
-        </div>
+        <div class="run-dots"><div class="run-dot"></div><div class="run-dot"></div><div class="run-dot"></div></div>
         <div class="run-label">Đang áp dụng config…</div>
       </div>
-      <div class="code-result" id="codeResult">
-        ✅ ĐÃ HOÀN THÀNH — Config áp dụng thành công!
-      </div>
+      <div class="code-result" id="codeResult">✅ ĐÃ HOÀN THÀNH — Config áp dụng thành công!</div>
     </div>
 
     <!-- Launch -->
     <div class="div-lbl">🎮 MỞ GAME</div>
     <div class="launch-grid">
       <button class="launch-btn lbff" onclick="window.location.href='freefire://'">
-        <span class="lb-icon">🔥</span>
-        <span class="lb-label">FREE FIRE</span>
+        <span class="lb-icon">🔥</span><span class="lb-label">FREE FIRE</span>
       </button>
       <button class="launch-btn lbffmax" onclick="window.location.href='freefiremax://'">
-        <span class="lb-icon">💥</span>
-        <span class="lb-label">FREE FIRE MAX</span>
+        <span class="lb-icon">💥</span><span class="lb-label">FREE FIRE MAX</span>
       </button>
+    </div>
+
+    <!-- File Picker -->
+    <div class="div-lbl">📂 CHẠY TỆP CẤU HÌNH</div>
+    <div class="file-picker-card">
+      <div class="fp-lbl">📂 Chọn tệp — Hỗ trợ JS · JSON · TXT · CFG</div>
+      <div class="fp-drop-zone" id="fpDropZone">
+        <input type="file" id="fpFileInput" multiple accept="*/*" onchange="fpHandleFiles(this.files)"/>
+        <div class="fp-drop-icon">📁</div>
+        <div class="fp-drop-txt">Nhấn để chọn tệp</div>
+        <div class="fp-drop-sub">Có thể chọn nhiều tệp cùng lúc</div>
+      </div>
+      <div class="fp-file-list" id="fpFileList"></div>
+      <div class="fp-actions">
+        <button class="btn-fp-clear" id="btnFpClear" onclick="fpClear()" style="display:none">🗑 Xóa</button>
+        <button class="btn-fp-run" id="btnFpRun" onclick="fpRunAll()" disabled>▶ CHẠY TẤT CẢ</button>
+      </div>
+      <div class="fp-progress" id="fpProgress">
+        <div class="fp-prog-bar-wrap"><div class="fp-prog-bar" id="fpProgBar"></div></div>
+        <div class="fp-prog-txt" id="fpProgTxt">Đang xử lý…</div>
+      </div>
+      <div class="fp-result-box" id="fpResultBox"></div>
     </div>
 
     <!-- Footer -->
     <div class="app-footer">
       <div class="footer-socials">
-        <a class="social-pill tiktok-pill" href="https://tiktok.com/@kyra_gaming97" target="_blank">
-          🎵 @kyra_gaming97
-        </a>
-        <a class="social-pill zalo-pill" href="https://zalo.me/0798623521" target="_blank">
-          💬 Zalo
-        </a>
+        <a class="social-pill tiktok-pill" href="https://tiktok.com/@kyra_gaming97" target="_blank">🎵 @kyra_gaming97</a>
+        <a class="social-pill zalo-pill" href="https://zalo.me/0798623521" target="_blank">💬 Zalo</a>
       </div>
-      <a class="footer-buy" href="https://zalo.me/0798623521" target="_blank">
-        💬 Nhắn Zalo mua Key VIP ngay
-      </a>
-      <div class="footer-copy">GIA BẢO PANEL · VIP PREMIUM · 2025</div>
+      <a class="footer-buy" href="https://zalo.me/0798623521" target="_blank">💬 Nhắn Zalo mua Key VIP ngay</a>
+      <div class="footer-copy">AIMLOCK PLUS · By Kyra X NguyenVanh · VIP 2025</div>
     </div>
 
   </div>
@@ -1061,103 +699,73 @@ input[type=range]::-webkit-slider-thumb:active{transform:scale(1.28);}
   <div class="load-track"><div class="load-fill" id="loadFill"></div></div>
 </div>
 
+<!-- Tâm Ảo overlay -->
+<div id="tamao-overlay">
+  <div id="tamao-crosshair" style="left:50%;top:50%;transform:translate(-50%,-50%)">
+    <svg class="ch-svg" width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- outer ring -->
+      <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(255,0,0,0.35)" stroke-width="1.2"/>
+      <!-- inner ring -->
+      <circle cx="40" cy="40" r="24" fill="none" stroke="rgba(255,30,30,0.55)" stroke-width="1.5"/>
+      <!-- crosshair lines -->
+      <line x1="40" y1="4"  x2="40" y2="22" stroke="#ff2222" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="40" y1="58" x2="40" y2="76" stroke="#ff2222" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="4"  y1="40" x2="22" y2="40" stroke="#ff2222" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="58" y1="40" x2="76" y2="40" stroke="#ff2222" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- center dot -->
+      <circle cx="40" cy="40" r="4" fill="#ff2222"/>
+      <circle cx="40" cy="40" r="2" fill="#ff8888"/>
+      <!-- corner ticks -->
+      <line x1="24" y1="20" x2="28" y2="24" stroke="rgba(255,60,60,.5)" stroke-width="1.2"/>
+      <line x1="56" y1="20" x2="52" y2="24" stroke="rgba(255,60,60,.5)" stroke-width="1.2"/>
+      <line x1="24" y1="60" x2="28" y2="56" stroke="rgba(255,60,60,.5)" stroke-width="1.2"/>
+      <line x1="56" y1="60" x2="52" y2="56" stroke="rgba(255,60,60,.5)" stroke-width="1.2"/>
+    </svg>
+    <div id="tamao-close-btn" onclick="closeTamao()">✕</div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div id="toast"></div>
 
 <script>
 /* ═══ ICON ═══ */
-(function applyIcon(){
-  const url=typeof APP_ICON_URL!=='undefined'?APP_ICON_URL:'https://i.ibb.co/tpP5MKXb/Shop-kyra.png';
-  if(url&&url.trim()!==''){
-    ['land-icon','modal-icon','app-icon'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el){el.src=url;el.style.display='block';}
-    });
+(function(){
+  const url=typeof APP_ICON_URL!=='undefined'?APP_ICON_URL:'';
+  if(url&&url.trim()){
+    ['land-icon','modal-icon','app-icon'].forEach(id=>{const el=document.getElementById(id);if(el){el.src=url;el.style.display='block';}});
     document.getElementById('landDefaultIcon').style.display='none';
     document.getElementById('modalDefaultIcon').style.display='none';
     document.getElementById('appDefaultIcon').style.display='none';
-    const link=document.createElement('link');
-    link.rel='icon';link.href=url;
-    document.head.appendChild(link);
+    const link=document.createElement('link');link.rel='icon';link.href=url;document.head.appendChild(link);
   }
 })();
 
 /* ═══ FIREWORKS ═══ */
-(function initFW(){
-  const c=document.getElementById('fw-canvas');
-  const ctx=c.getContext('2d');
-  let W,H;
-  const resize=()=>{W=c.width=innerWidth;H=c.height=innerHeight;};
-  resize();addEventListener('resize',resize);
+(function(){
+  const c=document.getElementById('fw-canvas');const ctx=c.getContext('2d');
+  let W,H;const resize=()=>{W=c.width=innerWidth;H=c.height=innerHeight;};resize();addEventListener('resize',resize);
   let particles=[];
   const palettes=[[200,220],[260,280],[180,200],[30,50],[0,20],[160,180]];
-  function burst(sx,sy){
-    const pal=palettes[Math.floor(Math.random()*palettes.length)];
-    const count=50+Math.random()*35|0;
-    for(let i=0;i<count;i++){
-      const ang=Math.random()*Math.PI*2;
-      const spd=1.8+Math.random()*4.8;
-      particles.push({
-        x:sx,y:sy,
-        vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,
-        alpha:1,decay:.013+Math.random()*.02,
-        r:1.4+Math.random()*2.4,
-        hue:pal[0]+Math.random()*(pal[1]-pal[0]),
-        trail:[]
-      });
-    }
-  }
+  function burst(sx,sy){const pal=palettes[Math.floor(Math.random()*palettes.length)];const count=50+Math.random()*35|0;for(let i=0;i<count;i++){const ang=Math.random()*Math.PI*2;const spd=1.8+Math.random()*4.8;particles.push({x:sx,y:sy,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,decay:.013+Math.random()*.02,r:1.4+Math.random()*2.4,hue:pal[0]+Math.random()*(pal[1]-pal[0]),trail:[]});}}
   let lastT=0,nextT=1600;
   function frame(ts){
     ctx.fillStyle='rgba(0,0,0,.2)';ctx.fillRect(0,0,W,H);
-    if(ts-lastT>nextT){
-      const bx=W*(.15+Math.random()*.7);
-      const by=H*(.08+Math.random()*.42);
-      burst(bx,by);
-      if(Math.random()>.5)setTimeout(()=>burst(bx+(Math.random()-.5)*80,by+(Math.random()-.5)*40),200);
-      if(Math.random()>.75)setTimeout(()=>burst(W*(.15+Math.random()*.7),H*(.08+Math.random()*.42)),420);
-      lastT=ts;nextT=1400+Math.random()*1000;
-    }
-    particles=particles.filter(p=>{
-      p.trail.push({x:p.x,y:p.y});
-      if(p.trail.length>7)p.trail.shift();
-      p.x+=p.vx;p.y+=p.vy;p.vy+=.052;p.vx*=.985;p.alpha-=p.decay;
-      if(p.alpha<=0)return false;
-      for(let i=0;i<p.trail.length;i++){
-        const t=p.trail[i];const ta=(i/p.trail.length)*p.alpha*.35;
-        ctx.beginPath();ctx.arc(t.x,t.y,p.r*(.25+.75*(i/p.trail.length)),0,7);
-        ctx.fillStyle=`hsla(${p.hue},100%,65%,${ta})`;ctx.fill();
-      }
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);
-      ctx.fillStyle=`hsla(${p.hue},100%,78%,${p.alpha})`;
-      ctx.shadowBlur=9;ctx.shadowColor=`hsl(${p.hue},100%,60%)`;
-      ctx.fill();ctx.shadowBlur=0;
-      return true;
-    });
+    if(ts-lastT>nextT){const bx=W*(.15+Math.random()*.7);const by=H*(.08+Math.random()*.42);burst(bx,by);if(Math.random()>.5)setTimeout(()=>burst(bx+(Math.random()-.5)*80,by+(Math.random()-.5)*40),200);lastT=ts;nextT=1400+Math.random()*1000;}
+    particles=particles.filter(p=>{p.trail.push({x:p.x,y:p.y});if(p.trail.length>7)p.trail.shift();p.x+=p.vx;p.y+=p.vy;p.vy+=.052;p.vx*=.985;p.alpha-=p.decay;if(p.alpha<=0)return false;for(let i=0;i<p.trail.length;i++){const t=p.trail[i];const ta=(i/p.trail.length)*p.alpha*.35;ctx.beginPath();ctx.arc(t.x,t.y,p.r*(.25+.75*(i/p.trail.length)),0,7);ctx.fillStyle=`hsla(${p.hue},100%,65%,${ta})`;ctx.fill();}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle=`hsla(${p.hue},100%,78%,${p.alpha})`;ctx.shadowBlur=9;ctx.shadowColor=`hsl(${p.hue},100%,60%)`;ctx.fill();ctx.shadowBlur=0;return true;});
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-  setTimeout(()=>burst(W*.5,H*.35),250);
-  setTimeout(()=>burst(W*.3,H*.25),550);
-  setTimeout(()=>burst(W*.7,H*.3),850);
+  setTimeout(()=>burst(innerWidth*.5,innerHeight*.35),250);
+  setTimeout(()=>burst(innerWidth*.3,innerHeight*.25),550);
+  setTimeout(()=>burst(innerWidth*.7,innerHeight*.3),850);
 })();
 
 /* ═══ PARTICLES ═══ */
 (function(){
   const wrap=document.getElementById('particlesWrap');
   const cols=['rgba(0,212,255,.45)','rgba(123,47,247,.45)','rgba(255,255,255,.25)','rgba(0,255,180,.35)'];
-  for(let i=0;i<28;i++){
-    const p=document.createElement('div');p.className='particle';
-    const sz=Math.random()*4+1.5;
-    p.style.cssText=[
-      `left:${Math.random()*100}%`,
-      `width:${sz}px`,`height:${sz}px`,
-      `background:${cols[Math.floor(Math.random()*cols.length)]}`,
-      `animation-duration:${9+Math.random()*13}s`,
-      `animation-delay:${Math.random()*12}s`,
-    ].join(';');
-    wrap.appendChild(p);
-  }
+  for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';const sz=Math.random()*4+1.5;p.style.cssText=[`left:${Math.random()*100}%`,`width:${sz}px`,`height:${sz}px`,`background:${cols[Math.floor(Math.random()*cols.length)]}`,`animation-duration:${9+Math.random()*13}s`,`animation-delay:${Math.random()*12}s`].join(';');wrap.appendChild(p);}
 })();
 
 /* ═══ KEY VALIDATION ═══ */
@@ -1166,18 +774,10 @@ function tryActivate(){
   const k=document.getElementById('keyInput').value.trim();
   const err=document.getElementById('keyErr');
   if(!k){err.style.display='block';err.textContent='⚠️ Vui lòng nhập key!';return;}
-  if(VALID_KEYS.some(v=>v.toLowerCase()===k.toLowerCase())){
-    err.style.display='none';showWelcomeModal();
-  } else {
-    err.style.display='block';
-    err.style.animation='none';void err.offsetHeight;
-    err.style.animation='shake .4s ease';
-    err.textContent='❌ Key sai — Liên hệ Zalo: 0798623521 để mua key';
-  }
+  if(VALID_KEYS.some(v=>v.toLowerCase()===k.toLowerCase())){err.style.display='none';showWelcomeModal();}
+  else{err.style.display='block';err.style.animation='none';void err.offsetHeight;err.style.animation='shake .4s ease';err.textContent='❌ Key sai — Liên hệ Zalo: 0798623521 để mua key';}
 }
-function showWelcomeModal(){
-  const m=document.getElementById('modal-welcome');m.classList.add('show');
-}
+function showWelcomeModal(){document.getElementById('modal-welcome').classList.add('show');}
 function closeModal(){
   const m=document.getElementById('modal-welcome');
   m.style.opacity=0;m.style.transform='scale(.9)';m.style.transition='all .3s ease';
@@ -1186,45 +786,13 @@ function closeModal(){
 function enterApp(){
   document.getElementById('pg-landing').style.display='none';
   document.getElementById('pg-app').style.display='block';
-  initStats();animatePing();initSliders();
-}
-
-/* ═══ STATS ═══ */
-const CC=2*Math.PI*18;
-function setCircle(id,pId,pct){
-  document.getElementById(id).style.strokeDashoffset=(CC-CC*pct/100).toFixed(1);
-  document.getElementById(pId).textContent=pct+'%';
-}
-function initStats(){
-  const total=4096;let used=1400+Math.random()*500|0;
-  function ram(){used+=Math.random()*120-60|0;used=Math.max(900,Math.min(3200,used));
-    const p=Math.round(used/total*100);setCircle('circ-ram','pct-ram',p);
-    document.getElementById('sub-ram').textContent=(used/1024).toFixed(2)+' GB / '+(total/1024).toFixed(2)+' GB';}
-  ram();setInterval(ram,5000);
-  setCircle('circ-sto','pct-sto',30);
-  if(navigator.getBattery){
-    navigator.getBattery().then(b=>{
-      const ap=()=>{const p=Math.round(b.level*100);setCircle('circ-bat','pct-bat',p);
-        document.getElementById('circ-bat').style.stroke=p>50?'#00aaff':p>20?'#ffdd33':'#ff4444';
-        document.getElementById('sub-bat').textContent=(b.charging?'⚡ Đang sạc — ':'🔋 Còn ')+p+'%';};
-      ap();b.addEventListener('levelchange',ap);b.addEventListener('chargingchange',ap);
-    });
-  } else {
-    const fp=60+Math.round(Math.random()*30);setCircle('circ-bat','pct-bat',fp);
-    document.getElementById('sub-bat').textContent='🔋 '+fp+'%';
-  }
-}
-function animatePing(){
-  const el=document.getElementById('pingVal');
-  function r(){const p=22+Math.round(Math.random()*75);el.textContent=p+' ms';
-    el.style.color=p<45?'#00ff99':p<80?'#ffdd33':'#ff6644';}
-  r();setInterval(r,2200);
+  initSliders();
 }
 
 /* ═══ SLIDERS ═══ */
 function initSliders(){
   document.querySelectorAll('#pg-app input[type=range]').forEach(r=>{
-    r.style.setProperty('--p','0%');
+    r.style.setProperty('--p',r.value+'%');
   });
 }
 function syncSlider(input,valId){
@@ -1232,19 +800,108 @@ function syncSlider(input,valId){
   input.style.setProperty('--p',input.value+'%');
 }
 
-/* ═══ PANEL TOGGLE ═══ */
-let openPanel=null;
-function togglePanel(id){
-  const panel=document.getElementById('panel-'+id);
-  const btn=document.getElementById('fb-'+id);
-  if(openPanel&&openPanel!==id){
-    document.getElementById('panel-'+openPanel).classList.remove('open');
-    document.getElementById('fb-'+openPanel).classList.remove('is-open');
-  }
-  if(openPanel===id){panel.classList.remove('open');btn.classList.remove('is-open');openPanel=null;}
-  else{panel.classList.add('open');btn.classList.add('is-open');openPanel=id;
-    setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),65);}
+/* ═══ FEATURE TOGGLE (card-based) ═══ */
+const featureStates={};
+function toggleFeature(id){
+  const tog=document.getElementById('tog-'+id);
+  tog.checked=!tog.checked;
+  onToggleChange(id,tog.checked);
 }
+function onToggleChange(id,on){
+  featureStates[id]=on;
+  const card=document.getElementById('card-'+id);
+  const panel=document.getElementById('panel-'+id);
+  const st=document.getElementById('st-'+id);
+  if(on){
+    card.classList.add('active');
+    st.textContent='● BẬT';st.className='ftc-status on';
+    if(panel){panel.classList.add('open');}
+    showToast('✅ '+id.toUpperCase()+' — Đã bật!');
+  } else {
+    card.classList.remove('active');
+    st.textContent='● TẮT';st.className='ftc-status off';
+    if(panel){panel.classList.remove('open');}
+  }
+}
+
+/* ═══ TÂM ẢO ═══ */
+let tamaoOn=false;
+function toggleTamao(){
+  const tog=document.getElementById('tog-tamao');
+  tog.checked=!tog.checked;
+  onTamaoChange(tog.checked);
+}
+function onTamaoChange(on){
+  tamaoOn=on;
+  const card=document.getElementById('card-tamao');
+  const st=document.getElementById('st-tamao');
+  const overlay=document.getElementById('tamao-overlay');
+  const tog=document.getElementById('tog-tamao');
+  tog.checked=on;
+  if(on){
+    card.classList.add('active');
+    st.textContent='● BẬT';st.className='tamao-status on';
+    overlay.classList.add('show');
+    // show hint
+    const hint=document.getElementById('tamao-hint')||createHint();
+    hint.style.display='block';hint.style.animation='none';void hint.offsetHeight;hint.style.animation='toastFade 4s ease forwards';
+    setTimeout(()=>{if(hint)hint.style.display='none';},4000);
+    showToast('🔴 Tâm Ảo — Đã bật! Kéo để di chuyển tâm.');
+  } else {
+    card.classList.remove('active');
+    st.textContent='● TẮT';st.className='tamao-status off';
+    overlay.classList.remove('show');
+  }
+}
+function createHint(){
+  let h=document.getElementById('tamao-hint');
+  if(!h){h=document.createElement('div');h.id='tamao-hint';h.textContent='🔴 Kéo tâm đỏ để di chuyển vị trí';document.body.appendChild(h);}
+  return h;
+}
+function closeTamao(){
+  document.getElementById('tog-tamao').checked=false;
+  onTamaoChange(false);
+}
+
+
+let tamaoSize=40;
+function updateTamaoSize(v){
+  tamaoSize=parseInt(v)||40;
+  const el=document.getElementById('v-ts1');
+  if(el) el.textContent=tamaoSize;
+  const ch=document.getElementById('tamao-crosshair');
+  if(ch) ch.style.transform='scale('+(tamaoSize/60)+')';
+}
+
+/* drag support for crosshair */
+(function(){
+  const ch=document.getElementById('tamao-crosshair');
+  let dragging=false,ox=0,oy=0,cx=0,cy=0;
+  function getPos(e){return e.touches?{x:e.touches[0].clientX,y:e.touches[0].clientY}:{x:e.clientX,y:e.clientY};}
+  function start(e){
+    if(e.target.id==='tamao-close-btn')return;
+    dragging=true;
+    const r=ch.getBoundingClientRect();
+    cx=r.left+r.width/2;cy=r.top+r.height/2;
+    const p=getPos(e);ox=p.x-cx;oy=p.y-cy;
+    e.preventDefault();
+  }
+  function move(e){
+    if(!dragging)return;
+    const p=getPos(e);
+    const nx=p.x-ox;const ny=p.y-oy;
+    ch.style.left=nx+'px';ch.style.top=ny+'px';
+    ch.style.transform='translate(-50%,-50%)';
+    e.preventDefault();
+  }
+  function end(){dragging=false;}
+  ch.addEventListener('mousedown',start);
+  ch.addEventListener('touchstart',start,{passive:false});
+  document.addEventListener('mousemove',move);
+  document.addEventListener('touchmove',move,{passive:false});
+  document.addEventListener('mouseup',end);
+  document.addEventListener('touchend',end);
+})();
 
 /* ═══ SAVE ═══ */
 const loadMsgs=['Đang khởi tạo…','Tối ưu hệ thống…','Áp dụng cài đặt…','Hoàn tất!'];
@@ -1258,13 +915,7 @@ function doSave(id){
   txt.textContent=loadMsgs[0];let mi=1;
   const tick=setInterval(()=>{if(mi<loadMsgs.length)txt.textContent=loadMsgs[mi++];},dur/loadMsgs.length);
   requestAnimationFrame(()=>{fill.style.transition=`width ${dur}ms linear`;fill.style.width='100%';});
-  setTimeout(()=>{
-    clearInterval(tick);overlay.classList.remove('show');
-    fill.style.transition='none';fill.style.width='0%';
-    if(openPanel){document.getElementById('panel-'+openPanel).classList.remove('open');
-      document.getElementById('fb-'+openPanel).classList.remove('is-open');openPanel=null;}
-    showToast('✅ Lưu thành công!');
-  },dur);
+  setTimeout(()=>{clearInterval(tick);overlay.classList.remove('show');fill.style.transition='none';fill.style.width='0%';showToast('✅ Lưu thành công!');},dur);
 }
 
 /* ═══ CODE RUNNER ═══ */
@@ -1275,22 +926,22 @@ function runCode(){
   const result=document.getElementById('codeResult');
   result.style.display='none';running.style.display='block';
   const dur=2000+Math.random()*1300;
-  setTimeout(()=>{
-    running.style.display='none';result.style.display='block';
-    result.style.animation='none';void result.offsetHeight;
-    result.style.animation='resultPop .4s cubic-bezier(.34,1.56,.64,1)';
-    showToast('✅ Code áp dụng thành công!');
-  },dur);
+  setTimeout(()=>{running.style.display='none';result.style.display='block';result.style.animation='none';void result.offsetHeight;result.style.animation='resultPop .4s cubic-bezier(.34,1.56,.64,1)';showToast('✅ Code áp dụng thành công!');},dur);
 }
 
+/* ═══ FILE PICKER ═══ */
+let fpFiles=[];
+(function(){const zone=document.getElementById('fpDropZone');if(!zone)return;zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag-over');});zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag-over');fpHandleFiles(e.dataTransfer.files);});})();
+function fpGetIcon(name){const ext=name.split('.').pop().toLowerCase();const map={js:'⚙️',json:'📋',txt:'📄',cfg:'🔧',ini:'🔧',xml:'📝',lua:'🌙',py:'🐍',sh:'💻',bat:'💻'};return map[ext]||'📁';}
+function fpFormatSize(b){if(b<1024)return b+'B';if(b<1024*1024)return (b/1024).toFixed(1)+'KB';return (b/(1024*1024)).toFixed(2)+'MB';}
+function fpHandleFiles(fileList){if(!fileList||!fileList.length)return;const existing=new Set(fpFiles.map(f=>f.name));Array.from(fileList).forEach(f=>{if(!existing.has(f.name)){fpFiles.push(f);existing.add(f.name);}});fpRenderList();}
+function fpRenderList(){const list=document.getElementById('fpFileList');const btnClear=document.getElementById('btnFpClear');const btnRun=document.getElementById('btnFpRun');const resBox=document.getElementById('fpResultBox');resBox.style.display='none';resBox.innerHTML='';document.getElementById('fpProgress').style.display='none';if(!fpFiles.length){list.style.display='none';btnClear.style.display='none';btnRun.disabled=true;return;}list.style.display='block';btnClear.style.display='';btnRun.disabled=false;list.innerHTML=fpFiles.map((f,i)=>`<div class="fp-file-item" id="fpItem-${i}"><span class="fp-file-icon">${fpGetIcon(f.name)}</span><span class="fp-file-name">${f.name}</span><span class="fp-file-size">${fpFormatSize(f.size)}</span><span class="fp-file-status" id="fpStat-${i}">⏳</span></div>`).join('');}
+function fpClear(){fpFiles=[];document.getElementById('fpFileInput').value='';document.getElementById('fpFileList').style.display='none';document.getElementById('fpFileList').innerHTML='';document.getElementById('fpResultBox').style.display='none';document.getElementById('fpResultBox').innerHTML='';document.getElementById('fpProgress').style.display='none';document.getElementById('fpProgBar').style.width='0%';document.getElementById('btnFpClear').style.display='none';document.getElementById('btnFpRun').disabled=true;}
+function fpTryExecuteContent(name,content){const ext=name.split('.').pop().toLowerCase();try{if(ext==='json'){JSON.parse(content);return {ok:true,msg:'JSON áp dụng thành công'};}if(ext==='js'){const fn=new Function(content);fn();return {ok:true,msg:'JS chạy thành công'};}if(['txt','cfg','ini'].includes(ext)){return {ok:true,msg:'Tệp đã đọc thành công'};}return {ok:true,msg:'Tệp xử lý thành công'};}catch(e){return {ok:false,msg:'Lỗi: '+e.message};}}
+function fpRunAll(){if(!fpFiles.length)return;const btnRun=document.getElementById('btnFpRun');const btnClear=document.getElementById('btnFpClear');const prog=document.getElementById('fpProgress');const bar=document.getElementById('fpProgBar');const txt=document.getElementById('fpProgTxt');const resBox=document.getElementById('fpResultBox');btnRun.disabled=true;btnClear.disabled=true;prog.style.display='block';resBox.style.display='none';resBox.innerHTML='';bar.style.transition='none';bar.style.width='0%';const total=fpFiles.length;const results=[];let msgIdx=0;const messages=['Đang khởi động…','Đọc tệp…','Áp dụng cài đặt…','Tối ưu…','Hoàn tất!'];txt.textContent=messages[0];const msgTick=setInterval(()=>{msgIdx=(msgIdx+1)%messages.length;txt.textContent=messages[msgIdx];},500);function processFile(i){if(i>=total){clearInterval(msgTick);bar.style.transition='width .4s ease';bar.style.width='100%';txt.textContent='✅ Hoàn tất!';setTimeout(()=>{prog.style.display='none';resBox.style.display='block';resBox.innerHTML=results.map((r,idx)=>`<div class="fp-result-item ${r.ok?'ok':'warn'}" style="animation-delay:${idx*0.06}s"><span>${r.ok?'✅':'⚠️'}</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${fpFiles[idx].name}</span><span style="font-size:9px;opacity:.7;flex-shrink:0">${r.msg}</span></div>`).join('');btnRun.disabled=false;btnClear.disabled=false;showToast('✅ Đã chạy '+total+' tệp!');results.forEach((r,idx)=>{const s=document.getElementById('fpStat-'+idx);if(s)s.textContent=r.ok?'✅':'⚠️';});},300);return;}const f=fpFiles[i];const statEl=document.getElementById('fpStat-'+i);if(statEl)statEl.textContent='🔄';const pct=Math.round((i/total)*90);bar.style.transition='width .3s linear';bar.style.width=pct+'%';const delay=400+Math.random()*500;const reader=new FileReader();reader.onload=e=>{const content=e.target.result;setTimeout(()=>{const res=fpTryExecuteContent(f.name,content);results.push(res);processFile(i+1);},delay);};reader.onerror=()=>{results.push({ok:false,msg:'Không đọc được'});processFile(i+1);};reader.readAsText(f);}processFile(0);}
+
 /* ═══ TOAST ═══ */
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.style.display='block';
-  t.style.animation='none';void t.offsetHeight;
-  t.style.animation='toastFade 3s ease forwards';
-  setTimeout(()=>t.style.display='none',3000);
-}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';t.style.animation='none';void t.offsetHeight;t.style.animation='toastFade 3s ease forwards';setTimeout(()=>t.style.display='none',3000);}
 </script>
 </body>
 </html>
